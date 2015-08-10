@@ -1,0 +1,129 @@
+/*!
+ * Notification.js
+ *
+ * A well designed, highly customizable and lightweigth notification library.
+ *
+ * @author 	   Dominique Müller <dominique.m.mueller@gmail.com>
+ * @copyright  Dominique Müller 2015
+ * @license    MIT <http://opensource.org/licenses/MIT>
+ * @link 	   Github <https://github.com/dominique-mueller/notification-js>
+ * @version    1.0.0
+ */
+
+/* Notification container */
+
+.notification {
+	position: fixed;
+	z-index: 9999;
+	overflow: hidden;
+	box-shadow: 0 1px 2px rgba(0,0,0,0);
+	opacity: 0;
+}
+
+.notification.is-visible {
+	box-shadow: 0 1px 2px rgba(0,0,0,.15);
+	opacity: 1;
+}
+
+.notification-background {
+	position: absolute;
+	top: 50%;
+	z-index: -1;
+	width: 200%;
+	padding-bottom: 200%;
+	border-radius: 50%;
+	-webkit-transform: translateY(-50%) scale(0);
+			transform: translateY(-50%) scale(0);
+}
+
+.notification.is-visible > .notification-background {
+	-webkit-transform: translateY(-50%) scale(1);
+			transform: translateY(-50%) scale(1);
+}
+
+/* Notification symbol */
+
+.notification-symbol {
+	float: left;
+	opacity: 0;
+}
+
+.notification.is-visible > .notification-symbol {
+	opacity: 1;
+}
+
+/* Notification default success symbol */
+
+.notification-symbol-success > polyline {
+	stroke-dashoffset: 23;
+	transition: stroke-dashoffset 0s linear 2s;
+}
+
+.notification.is-visible > .notification-symbol-success > polyline {
+	stroke-dashoffset: 0;
+	transition: stroke-dashoffset .8s ease;
+}
+
+/* Notification default error symbol */
+
+.notification-symbol-error > line {
+	stroke-dashoffset: 17;
+	transition: stroke-dashoffset 0s linear 2s;
+}
+
+.notification.is-visible > .notification-symbol-error > line:nth-child(1) {
+	stroke-dashoffset: 0;
+	transition: stroke-dashoffset .5s ease;
+}
+
+.notification.is-visible > .notification-symbol-error > line:nth-child(2) {
+	stroke-dashoffset: 0;
+	transition: stroke-dashoffset .5s ease .4s;
+}
+
+/* Notification message */
+
+.notification-message {
+	float: left;
+	margin-top: 0;
+	margin-bottom: 0;
+	font-size: 14px;
+	opacity: 0;
+	-webkit-transform: translateX(-22px);
+			transform: translateX(-22px);
+}
+
+.notification.is-visible > .notification-message {
+	opacity: 1;
+	-webkit-transform: translateX(0);
+			transform: translateX(0);
+}
+
+/* Notification button */
+
+.notification-btn {
+	position: relative;
+	z-index: 1;
+	float: left;
+	margin: 10px 10px 10px -8px;
+	background-color: transparent;
+	border: none;
+	font-size: 12px;
+	text-transform: uppercase;
+	opacity: 0;
+	cursor: pointer;
+}
+
+.notification-btn:hover,
+.notification-btn:focus,
+.notification-btn:active {
+	padding: inherit;
+}
+
+.notification-btn::-moz-focus-inner {
+	border: 0;
+}
+
+.notification.is-visible > .notification-btn {
+	opacity: .5;
+}

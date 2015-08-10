@@ -1,0 +1,40 @@
+{
+	"name": "notification-js",
+	"description": "A dependency-free, well designed and highly customizable notification library.",
+	"authors": [
+		{
+			"name": "Dominique Müller",
+			"email": "dominique.m.mueller@gmail.com",
+			"homepage": "http://www.dominique-mueller.de/"
+		}
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/dominique-mueller/notification-js.git"
+	},
+	"license": "MIT",
+	"homepage": "http://www.dominique-mueller.de/projects/notification-js",
+	"main": [
+		"src/notification.js",
+		"src/notification.css"
+	],
+	"keywords": [
+		"notification-js",
+		"notification",
+		"notify",
+		"alert",
+		"alertify",
+		"message",
+		"information",
+		"feedback",
+		"javascript",
+		"js"
+	],
+	"moduleType": [
+		"globals"
+	],
+	"ignore": [
+		"**/.*",
+		"node_modules"
+	]
+}

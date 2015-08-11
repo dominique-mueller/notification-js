@@ -35,6 +35,11 @@
 		"grunt-contrib-cssmin": "0.13.x",
 		"grunt-contrib-jshint": "0.11.x",
 		"grunt-contrib-uglify": "0.9.x",
+		"grunt-csscomb": "3.0.x",
+		"grunt-githooks": "0.3.x",
 		"grunt-jscs": "2.0.x"
+	},
+	"scripts": {
+		"postinstall": "grunt creategithook"
 	}
 }

@@ -16,8 +16,8 @@
 	position: fixed;
 	z-index: 9999;
 	overflow: hidden;
-	box-sizing: border-box;
 	box-shadow: 0 1px 2px rgba(0,0,0,0);
+	box-sizing: border-box;
 	opacity: 0;
 }
 
@@ -34,12 +34,12 @@
 	padding-bottom: 200%;
 	border-radius: 50%;
 	-webkit-transform: translateY(-50%) scale(0);
-			transform: translateY(-50%) scale(0);
+	        transform: translateY(-50%) scale(0);
 }
 
 .notification.is-visible > .notification-background {
 	-webkit-transform: translateY(-50%) scale(1);
-			transform: translateY(-50%) scale(1);
+	        transform: translateY(-50%) scale(1);
 }
 
 /* Notification symbol */
@@ -56,30 +56,35 @@
 /* Notification default success symbol */
 
 .notification-symbol-success > polyline {
-	stroke-dashoffset: 23;
 	transition: stroke-dashoffset 0s linear 2s;
+
+	stroke-dashoffset: 23;
 }
 
 .notification.is-visible > .notification-symbol-success > polyline {
-	stroke-dashoffset: 0;
 	transition: stroke-dashoffset .8s ease;
+
+	stroke-dashoffset: 0;
 }
 
 /* Notification default error symbol */
 
 .notification-symbol-error > line {
-	stroke-dashoffset: 17;
 	transition: stroke-dashoffset 0s linear 2s;
+
+	stroke-dashoffset: 17;
 }
 
 .notification.is-visible > .notification-symbol-error > line:nth-child(1) {
-	stroke-dashoffset: 0;
 	transition: stroke-dashoffset .5s ease;
+
+	stroke-dashoffset: 0;
 }
 
 .notification.is-visible > .notification-symbol-error > line:nth-child(2) {
-	stroke-dashoffset: 0;
 	transition: stroke-dashoffset .5s ease .4s;
+
+	stroke-dashoffset: 0;
 }
 
 /* Notification message */
@@ -91,13 +96,13 @@
 	font-size: 14px;
 	opacity: 0;
 	-webkit-transform: translateX(-22px);
-			transform: translateX(-22px);
+	        transform: translateX(-22px);
 }
 
 .notification.is-visible > .notification-message {
 	opacity: 1;
 	-webkit-transform: translateX(0);
-			transform: translateX(0);
+	        transform: translateX(0);
 }
 
 /* Notification button */
@@ -107,12 +112,12 @@
 	z-index: 1;
 	float: left;
 	margin: 10px 10px 10px -8px;
-	background-color: transparent;
-	border: none;
 	font-size: 12px;
 	text-transform: uppercase;
-	opacity: 0;
 	cursor: pointer;
+	background-color: transparent;
+	border: none;
+	opacity: 0;
 }
 
 .notification-btn:hover,

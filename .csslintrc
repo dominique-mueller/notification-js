@@ -2,7 +2,7 @@
 	"important": true,
 	"adjoining-classes": false,
 	"known-properties": false,
-	"box-sizing": true,
+	"box-sizing": false,
 	"box-model": true,
 	"overqualified-elements": true,
 	"display-property-grouping": true,

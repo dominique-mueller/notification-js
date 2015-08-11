@@ -1,68 +1,104 @@
-module.exports = function( grunt ) {
+( function() {
 
-	// Project configuration
-	grunt.initConfig( {
+	'use strict';
 
-		// Import node configuration
-		pkg: grunt.file.readJSON( 'package.json' ),
+	module.exports = function( grunt ) {
 
-		// Configure JavaScript formatter
-		jscs: {
-			options: {
-				config: '.jscsrc',
-				fix: true
+		// Project configuration
+		grunt.initConfig( {
+
+			// Import package configuration
+			pkg: grunt.file.readJSON( 'package.json' ),
+
+			// Configure JavaScript formatter
+			jscs: {
+				build: {
+					options: {
+						config: '.jscsrc',
+						fix: true
+					},
+					src: [ 'src/notification.js', 'Gruntfile.js' ]
+				}
 			},
-			src: 'src/notification.js'
-		},
 
-		// Configure JavaScript validator
-		jshint: {
-			files: 'src/notification.js'
-		},
-
-		// Configure CSS validator
-		csslint: {
-			options: {
-				csslintrc: '.csslintrc'
+			// Configure CSS formatter
+			csscomb: {
+				build: {
+					options: {
+						config: '.csscomb.json'
+					},
+					files: {
+						'src/notification.css': [ 'src/notification.css' ]
+					}
+				}
 			},
-			strict: {
-				src: 'src/notification.css'
-			}
-		},
 
-		// Configure JavaScript uglifier
-		uglify: {
-			options: {
-				preserveComments: 'some',
-				screwIE8: true
-			},
-			build: {
+			// Configure JavaScript validator
+			jshint: {
 				files: {
-					'build/notification.min.js': 'src/notification.js'
+					src: [ 'src/notification.js', 'Gruntfile.js' ]
+				}
+			},
+
+			// Configure CSS validator
+			csslint: {
+				options: {
+					csslintrc: '.csslintrc'
+				},
+				build: {
+					src: 'src/notification.css'
+				}
+			},
+
+			// Configure JavaScript uglifier
+			uglify: {
+				options: {
+					preserveComments: 'some',
+					screwIE8: true
+				},
+				build: {
+					files: {
+						'build/notification.min.js': 'src/notification.js'
+					}
+				}
+			},
+
+			// Configure CSS minifier
+			cssmin: {
+				build: {
+					files: {
+						'build/notification.min.css': 'src/notification.css'
+					}
+				}
+			},
+
+			// Configure git hook
+			githooks: {
+				all: {
+					'pre-commit': 'jscs csscomb jshint csslint uglify cssmin'
 				}
 			}
-		},
 
-		// Configure CSS minifier
-		cssmin: {
-			build: {
-				files: {
-					'build/notification.min.css': 'src/notification.css'
-				}
-			}
-		}
+		} );
 
-	} );
+		// Load tasks
+		grunt.loadNpmTasks( 'grunt-contrib-csslint' );
+		grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
+		grunt.loadNpmTasks( 'grunt-contrib-jshint' );
+		grunt.loadNpmTasks( 'grunt-contrib-uglify' );
+		grunt.loadNpmTasks( 'grunt-csscomb' );
+		grunt.loadNpmTasks( 'grunt-githooks' );
+		grunt.loadNpmTasks( 'grunt-jscs' );
 
-	// Load tasks
-	grunt.loadNpmTasks( 'grunt-contrib-csslint' );
-	grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
-	grunt.loadNpmTasks( 'grunt-contrib-jshint' );
-	grunt.loadNpmTasks( 'grunt-contrib-uglify' );
-	grunt.loadNpmTasks( 'grunt-jscs' );
+		// Create single tasks
+		grunt.registerTask( 'format', [ 'jscs', 'csscomb' ] );
+		grunt.registerTask( 'validate', [ 'jshint', 'csslint' ] );
+		grunt.registerTask( 'minify', [ 'uglify', 'cssmin' ] );
+		grunt.registerTask( 'creategithook', [ 'githooks' ] );
 
-	// Create default task
-	grunt.registerTask( 'default', [ 'jscs', 'jshint', 'csslint', 'uglify', 'cssmin' ] );
-	grunt.registerTask( 'dev', [ 'csslint' ] );
+		// Create default task
+		grunt.registerTask( 'default', [ 'jscs', 'csscomb', 'jshint', 'csslint', 'uglify', 'cssmin' ] );
 
-};
+	};
+
+} )();

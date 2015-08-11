@@ -691,7 +691,7 @@
 			var $symbol;
 
 			// Options
-			var height 			= notificationDesign.height;
+			var size 			= notificationDesign.height;
 			var resource 		= symbolDesign.resource;
 			var borderRadius 	= symbolDesign.roundCorners;
 			var color 			= symbolDesign.color;
@@ -728,18 +728,20 @@
 
 				// Set attributes
 				$symbol.setAttributeNS( null, 'width', '24' );
-				$symbol.setAttributeNS( null, 'height', '24' );
+				$symbol.setAttributeNS( null, 'size', '24' );
 
 				// Set styles
+				$symbol.style.height = size + 'px';
+				$symbol.style.width = size + 'px';
 				if ( borderRadius ) {
-					$symbol.style.padding = ( height / 2 - 17 ) + 'px';
+					$symbol.style.padding = ( size / 2 - 17 ) + 'px';
 					$symbol.style.margin = '5px';
 					$symbol.style.borderRadius = borderRadius[ 0 ] + 'px ' +
 												 borderRadius[ 1 ] + 'px ' +
 												 borderRadius[ 2 ] + 'px ' +
 												 borderRadius[ 3 ] + 'px';
 				} else {
-					$symbol.style.padding = ( height / 2 - 12 ) + 'px';
+					$symbol.style.padding = ( size / 2 - 12 ) + 'px';
 				}
 
 			} else {
@@ -755,16 +757,16 @@
 
 				// Set styles
 				if ( symbolDesign.roundCorners ) {
-					$symbol.style.height = ( height - 10 ) + 'px';
-					$symbol.style.width = ( height - 10 ) + 'px';
+					$symbol.style.height = ( size - 10 ) + 'px';
+					$symbol.style.width = ( size - 10 ) + 'px';
 					$symbol.style.margin = '5px';
 					$symbol.style.borderRadius = borderRadius[ 0 ] + 'px ' +
 												 borderRadius[ 1 ] + 'px ' +
 												 borderRadius[ 2 ] + 'px ' +
 												 borderRadius[ 3 ] + 'px';
 				} else {
-					$symbol.style.height = height + 'px';
-					$symbol.style.width = height + 'px';
+					$symbol.style.height = size + 'px';
+					$symbol.style.width = size + 'px';
 				}
 
 			}

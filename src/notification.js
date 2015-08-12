@@ -902,10 +902,6 @@
 		// We only need to prepare when at least one notification is already open
 		if ( Notification.instances.length ) {
 
-			// Temporarily save the reference of the oldest notification
-			// We are overwriting this reference when building the new notification later on anyway
-			_this.$components.notification = Notification.instances[ 0 ].$components.notification;
-
 			// Stack notifications if option is enabled
 			if ( _this.options.behaviour.stacking ) {
 
@@ -941,7 +937,7 @@
 				// If needed we close the oldest notification first before shifting others
 				if ( closeFirst ) {
 
-					_this.close( function() {
+					Notification.instances[ 0 ].close( function() {
 						_this.shift( Notification.instances, 'up', function() {
 
 							// Continue
@@ -963,7 +959,7 @@
 
 			} else {
 
-				_this.close( function() {
+				Notification.instances[ 0 ].close( function() {
 
 					// Continue
 					_this.next( callback );

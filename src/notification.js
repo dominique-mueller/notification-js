@@ -1276,7 +1276,7 @@
 		if ( _this.options.animations.enabled ) {
 
 			// Check when the css transition is done
-			_this.$components.notification.addEventListener( 'transitionend', function finished( event ) {
+			_this.$components.notification.addEventListener( 'transitionend', function finished() {
 
 				// Remove event listener immediately
 				_this.$components.notification.removeEventListener( 'transitionend', finished );
@@ -1585,13 +1585,18 @@
 				throw new Error( 'Configuring a profile requires an options object.' );
 			} else {
 
-				// Set new or overwrite existing options
 				for ( var section in options ) {
-					if ( profiles[ profile ].hasOwnProperty( section ) ) {
-						for ( var option in options[ section ] ) {
-							profiles[ profile ][ section ][ option ] = options[ section ][ option ];
-						}
+
+					// Create section first (if necessary)
+					if ( !profiles[ profile ].hasOwnProperty( section ) ) {
+						profiles[ profile ][ section ] = {};
 					}
+
+					// Create or update each option within this section
+					for ( var option in options[ section ] ) {
+						profiles[ profile ][ section ][ option ] = options[ section ][ option ];
+					}
+
 				}
 
 			}

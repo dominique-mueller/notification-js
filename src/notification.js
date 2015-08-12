@@ -1279,7 +1279,7 @@
 			_this.$components.notification.addEventListener( 'transitionend', function finished( event ) {
 
 				// Remove event listener immediately
-				event.target.removeEventListener( event.type, finished );
+				_this.$components.notification.removeEventListener( 'transitionend', finished );
 
 				// Continue
 				_this.next( callback );

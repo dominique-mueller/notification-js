@@ -135,7 +135,14 @@
 				 * @type 	 {String}
 				 * @default  '#FFF'
 				 */
-				color: '#FFF'
+				color: '#FFF',
+
+				/**
+				 * Defines the font size (in px)
+				 * @type 	 {Number}
+				 * @default  14
+				 */
+				textSize: 14
 
 			},
 
@@ -804,6 +811,7 @@
 			// Options
 			var color 		= messageDesign.color;
 			var height 		= notificationDesign.height;
+			var textSize 	= messageDesign.textSize;
 			var padding 	= Math.round( notificationDesign.height / 2.75 );
 
 			// Set message:
@@ -818,6 +826,7 @@
 
 			// Set styles
 			$message.style.color = color;
+			$message.style.fontSize = textSize + 'px';
 			$message.style.lineHeight = height + 'px';
 			$message.style.paddingLeft = padding + 'px';
 			$message.style.paddingRight = padding + 'px';

@@ -366,6 +366,19 @@ This option defines the text color of the message.
 color: '#FFF'
 ```
 
+---
+
+##### Text size
+
+This option defines the text size of the message.
+
+> Tip: Make sure to change this value onyl slightly to prevent design issues.
+
+``` javascript
+// Font size of 14px
+textSize: 14
+```
+
 <br>
 
 #### Dismiss button options

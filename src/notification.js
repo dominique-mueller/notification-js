@@ -1191,7 +1191,8 @@
 
 		// Options
 		var _this = this;
-		var duration = _this.options.animations.duration;
+		var inDuration = _this.options.animations.duration[ 0 ];
+		var outDuration = _this.options.animations.duration[ 1 ];
 		var easing = _this.options.animations.easing;
 
 		// Animate the notification in or out depending on the animation direction
@@ -1204,30 +1205,30 @@
 
 					// Notification container
 					_this.$components.notification.style.transition =
-						'box-shadow ' + ( duration[ 0 ] / 1.5 ) + 's ' + easing[ 0 ] + ' ' + ( duration[ 0 ] / 1.5 ) + 's, ' +
-						'opacity ' + duration[ 0 ] + 's ' + easing[ 0 ];
+						'box-shadow ' + ( inDuration / 1.5 ) + 's ' + easing[ 0 ] + ' ' + ( inDuration / 1.5 ) + 's, ' +
+						'opacity ' + inDuration + 's ' + easing[ 0 ];
 
 					// Notification background
 					_this.$components.background.style.transition =
-						'transform ' + duration[ 0 ] + 's ' + easing[ 0 ];
+						'transform ' + inDuration + 's ' + easing[ 0 ];
 
 					// Notification symbol
 					if ( _this.options.symbol.visible ) {
 						_this.$components.symbol.style.transition =
-							'opacity ' + duration[ 0 ] + 's ' + easing[ 0 ];
+							'opacity ' + inDuration + 's ' + easing[ 0 ];
 					}
 
 					// Notification message
 					if ( _this.options.message.visible ) {
 						_this.$components.message.style.transition =
-							'transform ' + duration[ 0 ] + 's ' + easing[ 0 ] + ', ' +
-							'opacity ' + duration[ 0 ] + 's ' + easing[ 0 ];
+							'transform ' + inDuration + 's ' + easing[ 0 ] + ', ' +
+							'opacity ' + inDuration + 's ' + easing[ 0 ];
 					}
 
 					// Notification dismiss button
 					if ( _this.options.dismiss.visible ) {
 						_this.$components.button.style.transition =
-							'opacity ' + ( duration[ 0 ] / 1.5 ) + 's ' + easing[ 0 ] + ' ' + ( duration[ 0 ] / 1.5 ) + 's';
+							'opacity ' + ( inDuration / 1.5 ) + 's ' + easing[ 0 ] + ' ' + ( inDuration / 1.5 ) + 's';
 					}
 
 				}
@@ -1247,30 +1248,30 @@
 
 					// Notification container
 					_this.$components.notification.style.transition =
-						'box-shadow ' + duration[ 1 ] + 's ' + easing[ 1 ] + ', ' +
-						'opacity ' + duration[ 1 ] + 's ' + easing[ 1 ];
+						'box-shadow ' + outDuration + 's ' + easing[ 1 ] + ', ' +
+						'opacity ' + outDuration + 's ' + easing[ 1 ];
 
 					// Notification background
 					_this.$components.background.style.transition =
-						'transform 0s linear ' + duration[ 1 ] + 's';
+						'transform 0s linear ' + outDuration + 's';
 
 					// Notification symbol
 					if ( _this.options.symbol.visible ) {
 						_this.$components.symbol.style.transition =
-							'opacity 0s linear ' + duration[ 1 ] + 's';
+							'opacity 0s linear ' + outDuration + 's';
 					}
 
 					// Notification message
 					if ( _this.options.message.visible ) {
 						_this.$components.message.style.transition =
-							'transform 0s linear ' + duration[ 1 ] + 's, ' +
-							'opacity 0s linear ' + duration[ 1 ] + 's';
+							'transform 0s linear ' + outDuration + 's, ' +
+							'opacity 0s linear ' + outDuration + 's';
 					}
 
 					// Notification dismiss button
 					if ( _this.options.dismiss.visible ) {
 						_this.$components.button.style.transition =
-							'opacity 0s linear ' + duration[ 1 ] + 's';
+							'opacity 0s linear ' + outDuration + 's';
 					}
 
 				}
@@ -1316,7 +1317,7 @@
 		 * or out by adding or removing the 'is-visible' class works properly.
 		 */
 		function forceUpdate() {
-			var temp = _this.$components.notification.offsetWidth;
+			return _this.$components.notification.offsetWidth;
 		}
 
 	};
@@ -1380,7 +1381,8 @@
 
 			// Calculate current animation progress
 			var animations = _this.options.animations;
-			var progress = ( animations.enabled ) ? ( new Date() - start ) / ( animations.duration[ 0 ] * 1000 / 1.5 ) : 1;
+			var now = new Date();
+			var progress = ( animations.enabled ) ? ( now - start ) / ( animations.duration[ 0 ] * 1000 / 1.5 ) : 1;
 
 			// Animation loop
 			if ( progress < 1 ) {
@@ -1658,7 +1660,7 @@
 	if ( !window.notification ) {
 		window.notification = API;
 	} else {
-		console.warn( 'Global notification object already defined.' );
+		throw new Error( 'Global notification object already defined.' );
 	}
 
 } )( this, this.document );

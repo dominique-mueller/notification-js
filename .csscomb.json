@@ -165,6 +165,7 @@
 			"flex-pack",
 			"flex-align",
 			"-webkit-box-sizing",
+			"-moz-box-sizing",
 			"box-sizing",
 			"table-layout",
 			"empty-cells",

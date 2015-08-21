@@ -3,11 +3,11 @@
 	"description": "A dependency-free, well designed and highly customizable notification library.",
 	"version": "1.0.0",
 	"author": {
-		"name": "Dominique Müller",
+	"name": "Dominique Müller",
 		"email": "dominique.m.mueller@gmail.com",
 		"url": "http://www.dominique-mueller.de/"
 	},
-	"repository": {
+		"repository": {
 		"type": "git",
 		"url": "https://github.com/dominique-mueller/notification-js.git"
 	},
@@ -30,6 +30,7 @@
 		"js"
 	],
 	"devDependencies": {
+		"autoprefixer-core": "5.2.x",
 		"grunt": "0.4.x",
 		"grunt-contrib-csslint": "0.5.x",
 		"grunt-contrib-cssmin": "0.13.x",
@@ -37,7 +38,8 @@
 		"grunt-contrib-uglify": "0.9.x",
 		"grunt-csscomb": "3.0.x",
 		"grunt-githooks": "0.3.x",
-		"grunt-jscs": "2.0.x"
+		"grunt-jscs": "2.0.x",
+		"grunt-postcss": "0.5.x"
 	},
 	"scripts": {
 		"postinstall": "grunt creategithook"

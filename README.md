@@ -54,6 +54,11 @@ git clone https://github.com/dominique-mueller/notification-js.git
 Include both the script and css files within your html document:
 
 ``` html
+<!-- During development -->
+<script src="notification.js"></script>
+<link rel="stylesheet" href="notification.css">
+
+<!-- For production -->
 <script src="notification.min.js"></script>
 <link rel="stylesheet" href="notification.min.css">
 ```
@@ -318,6 +323,9 @@ image with no transparency.
 > Tip: HEX, RGB or RGBA color values are recommended.
 
 ``` javascript
+// No highlight color
+color: false
+
 // Darker background highlight
 color: 'rgba(0,0,0,.1)'
 

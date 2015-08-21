@@ -4,6 +4,15 @@ Similar to our [GitHub releases page](https://github.com/dominique-mueller/notif
 
 
 
+## 1.0.4 / 2015-08-21
+
+**Bugfixes**
+
+* Fixed wrong symbol size when using round corners
+* Symbol will not be rendered when the resource is not set
+
+
+
 ## 1.0.3 / 2015-08-12
 
 **Bugfixes**

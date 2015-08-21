@@ -503,7 +503,7 @@
 
 		var _this = this;
 
-		// Combine multiple option objects into one
+		// Combine multiple option objects into one (respecting the hierarchy)
 		var combinedOptions = {};
 		for ( var option in profiles.global ) {
 			combinedOptions[ option ] = merge(
@@ -512,6 +512,13 @@
 				_this.options[ option ]
 			);
 		}
+
+		// Do not show symbol if resource is not set
+		if ( !combinedOptions.symbol.resource && _this.profile !== 'success' && _this.profile !== 'error' ) {
+			combinedOptions.symbol.visible = false;
+		}
+
+		// Set notification specific options
 		_this.options = combinedOptions;
 
 		/**
@@ -631,7 +638,7 @@
 			var xDistance 				= notificationDesign.distances[ 0 ];
 			var yDistance 				= notificationDesign.distances[ 1 ];
 			var height 					= notificationDesign.height;
-			var borderRadius 			= notificationDesign.roundCorners;
+			var corners 				= notificationDesign.roundCorners;
 			var color 					= notificationDesign.color;
 
 			// Set styles
@@ -657,11 +664,9 @@
 					break;
 			}
 			$container.style.height = height + 'px';
-			if ( borderRadius ) {
-				$container.style.borderRadius = borderRadius[ 0 ] + 'px ' +
-												borderRadius[ 1 ] + 'px ' +
-												borderRadius[ 2 ] + 'px ' +
-												borderRadius[ 3 ] + 'px';
+			if ( corners && ( corners[ 0 ] + corners[ 1 ] + corners[ 2 ] + corners[ 3 ] ) > 0 ) {
+				$container.style.borderRadius = corners[ 0 ] + 'px ' + corners[ 1 ] + 'px ' +
+												corners[ 2 ] + 'px ' + corners[ 3 ] + 'px';
 			}
 			$containerBackground.style.left = 'calc(-100% + ' + ( height / 2 ) + 'px' + ')';
 			$containerBackground.style.backgroundColor = color;
@@ -691,10 +696,10 @@
 			var $symbol;
 
 			// Options
-			var size 			= notificationDesign.height;
-			var resource 		= symbolDesign.resource;
-			var borderRadius 	= symbolDesign.roundCorners;
-			var color 			= symbolDesign.color;
+			var size 		= notificationDesign.height;
+			var resource 	= symbolDesign.resource;
+			var corners 	= symbolDesign.roundCorners;
+			var color 		= symbolDesign.color;
 
 			// Set symbol:
 			// If the resource is a string, we assume that the symbol is an external image of any format. But if the
@@ -731,16 +736,16 @@
 				$symbol.setAttributeNS( null, 'size', '24' );
 
 				// Set styles
-				$symbol.style.height = size + 'px';
-				$symbol.style.width = size + 'px';
-				if ( borderRadius ) {
+				if ( corners && ( corners[ 0 ] + corners[ 1 ] + corners[ 2 ] + corners[ 3 ] ) > 0 ) {
+					$symbol.style.height = ( size - 10 ) + 'px';
+					$symbol.style.width = ( size - 10 ) + 'px';
 					$symbol.style.padding = ( size / 2 - 17 ) + 'px';
 					$symbol.style.margin = '5px';
-					$symbol.style.borderRadius = borderRadius[ 0 ] + 'px ' +
-												 borderRadius[ 1 ] + 'px ' +
-												 borderRadius[ 2 ] + 'px ' +
-												 borderRadius[ 3 ] + 'px';
+					$symbol.style.borderRadius = corners[ 0 ] + 'px ' + corners[ 1 ] + 'px ' +
+												 corners[ 2 ] + 'px ' + corners[ 3 ] + 'px';
 				} else {
+					$symbol.style.height = size + 'px';
+					$symbol.style.width = size + 'px';
 					$symbol.style.padding = ( size / 2 - 12 ) + 'px';
 				}
 
@@ -756,14 +761,12 @@
 				$symbol.style.backgroundRepeat = 'no-repeat';
 
 				// Set styles
-				if ( symbolDesign.roundCorners ) {
+				if ( corners && ( corners[ 0 ] + corners[ 1 ] + corners[ 2 ] + corners[ 3 ] ) > 0 ) {
 					$symbol.style.height = ( size - 10 ) + 'px';
 					$symbol.style.width = ( size - 10 ) + 'px';
 					$symbol.style.margin = '5px';
-					$symbol.style.borderRadius = borderRadius[ 0 ] + 'px ' +
-												 borderRadius[ 1 ] + 'px ' +
-												 borderRadius[ 2 ] + 'px ' +
-												 borderRadius[ 3 ] + 'px';
+					$symbol.style.borderRadius = corners[ 0 ] + 'px ' + corners[ 1 ] + 'px ' +
+												 corners[ 2 ] + 'px ' + corners[ 3 ] + 'px';
 				} else {
 					$symbol.style.height = size + 'px';
 					$symbol.style.width = size + 'px';

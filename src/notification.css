@@ -46,8 +46,11 @@
 /* Notification symbol */
 
 .notification-symbol {
-	float: left;
+	position: absolute;
+	top: 50%;
 	opacity: 0;
+	-webkit-transform: translateY(-50%);
+	        transform: translateY(-50%);
 }
 
 .notification.is-visible > .notification-symbol {
@@ -91,7 +94,6 @@
 /* Notification message */
 
 .notification-message {
-	float: left;
 	margin-top: 0;
 	margin-bottom: 0;
 	opacity: 0;
@@ -108,16 +110,15 @@
 /* Notification button */
 
 .notification-btn {
-	position: relative;
-	z-index: 1;
-	float: left;
-	margin: 10px 10px 10px -8px;
-	font-size: 12px;
-	text-transform: uppercase;
+	position: absolute;
+	top: 50%;
+	right: 10px;
 	cursor: pointer;
 	background-color: transparent;
 	border: none;
 	opacity: 0;
+	-webkit-transform: translateY(-50%);
+	        transform: translateY(-50%);
 }
 
 .notification-btn:hover,

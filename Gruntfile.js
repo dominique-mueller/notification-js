@@ -10,7 +10,7 @@
 			// Import package configuration
 			pkg: grunt.file.readJSON( 'package.json' ),
 
-			/* ---------- CSS tasks ---------- */
+			/* ==========  CSS TASKS  ========== */
 
 			// Configure CSS autoprefixer
 			postcss: {
@@ -62,7 +62,7 @@
 				}
 			},
 
-			/* ---------- JavaScript tasks ---------- */
+			/* ==========  JS TASKS  ========== */
 
 			// Configure JavaScript formatter
 			jscs: {
@@ -98,7 +98,7 @@
 				}
 			},
 
-			/* ---------- Additional tasks ---------- */
+			/* ==========  ADDITIONAL TASKS  ========== */
 
 			// Configure git hook
 			githooks: {
@@ -109,7 +109,7 @@
 
 		} );
 
-		// Load tasks
+		// Load grunt plugins
 		grunt.loadNpmTasks( 'grunt-contrib-csslint' );
 		grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
 		grunt.loadNpmTasks( 'grunt-contrib-jshint' );
@@ -134,12 +134,12 @@
 			'uglify:build'
 		] );
 
-		// Create githook task
+		// Githook task
 		grunt.registerTask( 'creategithook', [
 			'githooks:all'
 		] );
 
-		// Create default task
+		// Default task
 		grunt.registerTask( 'default', [
 			'postcss:build',
 			'csscomb:build',

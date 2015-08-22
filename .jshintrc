@@ -69,9 +69,5 @@
 	"typed": false,
 	"worker": false,
 	"wsh": false,
-	"yui": false,
-	"globals": {
-		"module": true,
-		"require": true
-	}
+	"yui": false
 }

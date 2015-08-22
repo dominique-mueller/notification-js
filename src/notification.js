@@ -75,7 +75,7 @@
 				 * @type 	 {Boolean | Number}
 				 * @default  false
 				 */
-				maxWidth: 400,
+				maxWidth: false,
 
 				/**
 				 * Defines the corner roundness (all four corners in px)
@@ -1576,34 +1576,85 @@
 		/**
 		 * Clear all existing notifications
 		 *
-		 * @param  {Boolean | Number}  [offset]  Time offset between notifications animating out (in s)
+		 * @param  {Boolean | Number}  [offset]    Time offset between notifications animating out (in s)
+		 * @param  {Function} 		   [callback]  Callback function
 		 */
-		clearAll: function( offset ) {
+		clearAll: function() {
 
-			// Set animation time offset (defaults to 150ms)
-			var time = ( typeof offset === 'undefined' ) ? 0.15 : offset;
+			// Get arguments
+			var offset;
+			var callback;
+			switch ( arguments.length ) {
+				case 0:
+					offset = 0.15;
+					callback = undefined;
+					break;
+				case 1:
+					offset = typeof arguments[ 0 ] === 'function' ? 0.15 : arguments[ 0 ];
+					callback = typeof arguments[ 0 ] === 'function' ? arguments[ 0 ] : undefined;
+					break;
+				default:
+					offset = arguments[ 0 ];
+					callback = arguments[ 1 ];
+			}
 
-			// Look how many notifications we have to close
+			// Close all notifications
 			var countNotifications = Notification.instances.length;
-
 			for ( var i = countNotifications - 1; i >= 0; i-- ) {
 
 				// Check if animation offset is enabled
-				if ( time ) {
+				if ( offset ) {
 					closeNotification( i );
 				} else {
-					Notification.instances[ i ].close();
+					if ( !i && typeof callback !== 'undefined' ) {
+						Notification.instances[ i ].close( callback );
+					} else {
+						Notification.instances[ i ].close();
+					}
 				}
 
 			}
 
 			// Schedule notification animations
 			function closeNotification( instance ) {
+				var notification = Notification.instances[ instance ];
 				setTimeout( function() {
-					Notification.instances[ instance ].close();
-				}, instance * time * 1000 );
+					if ( instance === countNotifications - 1 && typeof callback !== 'undefined' ) {
+						notification.close( callback );
+					} else {
+						notification.close();
+					}
+				}, instance * offset * 1000 );
 			}
 
+		},
+
+		/**
+		 * Clear oldest notification
+		 *
+		 * @param  {Function}  [callback]  Callback
+		 */
+		clearOldest: function( callback ) {
+			var notification = Notification.instances[ 0 ];
+			if ( typeof callback !== 'undefined' ) {
+				notification.close( callback );
+			} else {
+				notification.close();
+			}
+		},
+
+		/**
+		 * Clear newest notification
+		 *
+		 * @param  {Function}  [callback]  Callback
+		 */
+		clearNewest: function( callback ) {
+			var notification = Notification.instances[ Notification.instances.length - 1 ];
+			if ( typeof callback !== 'undefined' ) {
+				notification.close( callback );
+			} else {
+				notification.close();
+			}
 		},
 
 		/**

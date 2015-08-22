@@ -1,7 +1,7 @@
 {
 	"name": "notification-js",
 	"description": "A dependency-free, well designed and highly customizable notification library.",
-	"version": "1.0.0",
+	"version": "1.0.4",
 	"author": {
 	"name": "Dominique Müller",
 		"email": "dominique.m.mueller@gmail.com",

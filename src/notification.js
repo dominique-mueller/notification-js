@@ -10,7 +10,31 @@
  * @version    1.0.0
  */
 
-( function( window, document, undefined ) {
+/**
+ * Universal module definition (UMD), dependency-free
+ */
+( function( root, factory ) {
+
+	'use strict';
+
+	if ( typeof define === 'function' && define.amd ) {
+
+		// AMD module, anonymous
+		define( factory );
+
+	} else if ( typeof module === 'object' && module.exports ) {
+
+		// Node module, CommonJS-like
+		module.exports = factory();
+
+	} else {
+
+		// Browser global (root is window)
+		root.notification = factory();
+
+	}
+
+}( this, function() {
 
 	'use strict';
 
@@ -1514,7 +1538,6 @@
 
 	/**
 	 * Public API
-	 * @type  {Object}
 	 */
 	var API = {
 
@@ -1727,13 +1750,6 @@
 
 	};
 
-	/**
-	 * Allow global access to the notification API
-	 */
-	if ( !window.notification ) {
-		window.notification = API;
-	} else {
-		throw new Error( 'Global notification object already defined.' );
-	}
+	return API;
 
-} )( this, this.document );
+} ) );

@@ -31,7 +31,9 @@
 		"js"
 	],
 	"moduleType": [
-		"globals"
+		"globals",
+		"amd",
+		"node"
 	],
 	"ignore": [
 		"**/.*",

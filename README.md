@@ -81,7 +81,10 @@ notification.notify( 'success', 'Settings successfully saved.', {
 } );
 ```
 
-### Clear all notifications
+
+### Clear notification
+
+#### Clear all of them
 
 You can clear all visible notifications by calling:
 
@@ -89,11 +92,44 @@ You can clear all visible notifications by calling:
 // Simple way
 notification.clearAll();
 
+// With no animation offset
+notification.clearAll( false );
+
 // With custom animation offset (in seconds, default is 0.15)
 notification.clearAll( 0.3 );
 
-// With no animation offset
-notification.clearAll( false );
+// With a callback
+notification.clearAll( function() { ... } );
+
+// With both animation offset and callback
+notification.clearAll( 0.3, function() { ... } );
+
+```
+
+#### Clear the newest one
+
+You can clear just the newst notification by calling:
+
+``` javascript
+// Simple way
+notification.clearNewest();
+
+// With a callback
+notification.clearNewest( function() { ... } );
+
+```
+
+#### Clear the oldest one
+
+You can clear just the oldest notification by calling:
+
+``` javascript
+// Simple way
+notification.clearOldest();
+
+// With a callback
+notification.clearOldest( function() { ... } );
+
 ```
 
 <br>
@@ -122,7 +158,7 @@ use cases
 * Then all predefined profiles (e.g. `success`) or your own profiles are taken into account
 * Lastly the `global` profile provides the values that are yet not set
 
-### Add profile
+#### Add profile
 
 You can add a brand new profile by calling:
 
@@ -138,7 +174,7 @@ notification.addProfile( 'social', {
 
 > Note: Profile names must be unique.
 
-### Configure profile
+#### Configure profile
 
 You can configure a profile with your own options object by calling:
 
@@ -151,7 +187,7 @@ notification.configProfile( 'social', {
 
 > Note: Profile options are not replaced but overwritten.
 
-### Remove profile
+#### Remove profile
 
 You can remove a profile by calling:
 
@@ -629,6 +665,7 @@ The following shows all the default options (in the `global` profile) for every 
 		position: [ 'left', 'bottom' ],
 		distances: [ 20, 20, 10 ],
 		height: 60,
+		maxWidth: false,
 		roundCorners: [ 1, 1, 1, 1],
 		color: 'green'
 	},
@@ -640,6 +677,7 @@ The following shows all the default options (in the `global` profile) for every 
 	},
 	message: {
 		visible: true,
+		textSize: 14,
 		color: '#FFF'
 	},
 	dismiss: {
@@ -732,9 +770,9 @@ This library should completely work with the following browser:
 * Internet Explorer 10+
 * Microsoft Edge
 * Mozilla Firefox 23+
-* Google Chrome 26+
-* Opera 15+
-* Safari 6.1+
+* Google Chrome 30+
+* Opera 17+
+* Safari 7.1+
 
 <br>
 
@@ -758,9 +796,9 @@ develop new ideas and features for this library.
 
 **Development environment**
 
-This project uses Grunt to automate some important development tasks, like formating, validating and minifiying
-different files. You can install Grunt and all necessary plugins by simply opening your command line tool, navigating
-to the main project folder and calling `npm install` (**[NodeJS](https://nodejs.org/download/)** required).
+This project uses **[Grunt](http://gruntjs.com/)** to automate development tasks like formating, validating and minifiying
+different files. You can install Grunt and all used plugins by simply opening your command line tool, navigating
+to the main project folder and calling `npm install` (**[NodeJS](https://nodejs.org/)** required).
 
 This process also automatically creates and installs a (project specific) git hook for you which ensures that the main
 Grunt task is being executed before any commit. This way the optimized library files (in the `build` folder) are always

@@ -20,9 +20,9 @@
 							browsers: [
 								'Explorer >= 10',
 								'Firefox >= 23',
-								'Chrome >= 26',
-								'Opera >= 15',
-								'Safari >= 6.1'
+								'Chrome >= 30',
+								'Opera >= 17',
+								'Safari >= 7.1'
 							]
 						} )
 					]

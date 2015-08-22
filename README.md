@@ -221,6 +221,22 @@ height: 60
 
 ---
 
+##### Maximum width
+
+This option defines the maximum notification width.
+
+> Note: The notification will not be wider than the screen size allows.
+
+``` javascript
+// The notification cannot be wider than the screen width
+maxWidth: false
+
+// The notification cannot be wider that 500px
+maxWidth: 500
+```
+
+---
+
 ##### Round corners
 
 This option defines the corner roundness of the notification. Each value represents a corner, starting from the top left
@@ -275,15 +291,19 @@ visibility: false
 This option defines what the symbol should look like. Here you can either set an icon (e.g. checkmark for success
 feedback) or an image (e.g. user image for social use cases).
 
-* When set to `false` the default symbol is being used (only for `success` / `error` !)
+* When set to `false` the default symbol is being used (only for `success`, `error` profiles)
+* You can set a string containing any valid svg code (to use inline svg)
 * You can set a relative / absolute path pointing to an image of any format (e.g. jpg, png)
-* You can set a function which returns a valid svg element
+* You can set a function which returns a valid svg DOM element (to use inline svg)
 
 > Note: For quality and perf reasons the resource should be quadratic and optimally sized.
 
 ``` javascript
 // Using the default symbol
 resource: false
+
+// String containing svg code
+resource: '<svg> ... </svg>'
 
 // Relative url to a PNG image
 resource: 'img/symbols/email.png'

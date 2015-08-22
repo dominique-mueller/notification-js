@@ -71,6 +71,13 @@
 				height: 60,
 
 				/**
+				 * Defines the maximum width (in px)
+				 * @type 	 {Boolean | Number}
+				 * @default  false
+				 */
+				maxWidth: 400,
+
+				/**
 				 * Defines the corner roundness (all four corners in px)
 				 * @type 	 {Boolean | Array}
 				 * @default  [ 1, 1, 1, 1 ]
@@ -645,6 +652,9 @@
 			}
 			if ( buttonOptions.visible && !buttonOptions.text ) {
 				$container.style.paddingRight = ( size - 20 ) + 'px';
+			}
+			if ( notificationOptions.maxWidth ) {
+				$container.style.maxWidth = notificationOptions.maxWidth + 'px';
 			}
 
 			// Set classes

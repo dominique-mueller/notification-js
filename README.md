@@ -63,11 +63,13 @@ Include both the script and css files within your html document:
 <link rel="stylesheet" href="notification.min.css">
 ```
 
+Furthermore this library can be used as a AMD or Node module.
+
 <br>
 
 ## How to use
 
-### Show notification
+#### Show notifications
 
 You can show a notification by calling:
 
@@ -81,10 +83,7 @@ notification.notify( 'success', 'Settings successfully saved.', {
 } );
 ```
 
-
-### Clear notification
-
-#### Clear all of them
+#### Clear all notifications
 
 You can clear all visible notifications by calling:
 
@@ -106,7 +105,7 @@ notification.clearAll( 0.3, function() { ... } );
 
 ```
 
-#### Clear the newest one
+#### Clear the newest notification
 
 You can clear just the newst notification by calling:
 
@@ -119,7 +118,7 @@ notification.clearNewest( function() { ... } );
 
 ```
 
-#### Clear the oldest one
+#### Clear the oldest notification
 
 You can clear just the oldest notification by calling:
 
@@ -136,7 +135,7 @@ notification.clearOldest( function() { ... } );
 
 ## How to configure
 
-### Profiles to the rescue
+#### The concept of profiles
 
 You may run into the situation that you fire multiple notifications and some of them are pretty similar when speaking about design
 and functionality. But you don't want to repeat yourself by passing in an options object again and again. There has
@@ -158,45 +157,67 @@ use cases
 * Then all predefined profiles (e.g. `success`) or your own profiles are taken into account
 * Lastly the `global` profile provides the values that are yet not set
 
-#### Add profile
+#### Add a profile
 
 You can add a brand new profile by calling:
 
 ``` javascript
-// Create new profile without options (adding them later on)
+// Create a new profile named 'social' without options
 notification.addProfile( 'social' );
 
-// Create new profile with options
+// Create a new profile named 'social' with options
 notification.addProfile( 'social', {
 	// ...
 } );
 ```
 
-> Note: Profile names must be unique.
+#### Configure a profile
 
-#### Configure profile
-
-You can configure a profile with your own options object by calling:
+You can overwrite profile options with your own options object by calling:
 
 ``` javascript
-// Configure existing profile
+// Configure the 'social' profile
 notification.configProfile( 'social', {
 	// ...
 } );
 ```
 
-> Note: Profile options are not replaced but overwritten.
+#### Remove a profile
 
-#### Remove profile
-
-You can remove a profile by calling:
+You can remove any profile which is not predefined (e.g. `global` or `success`) by calling:
 
 ``` javascript
-// Remove existing profile
+// Remove the 'social' profile
 notification.removeProfile( 'social' );
 ```
 
-> Note: Predefined profiles (e.g. `global` or `success`) cannot be deleted.
+#### Reset a profile
+
+You can reset any profile which is not predefined (e.g. `global` or `success`) by calling:
+
+``` javascript
+// Reset the 'social' profile to global default options
+notification.resetProfile( 'social' );
+```
+
+#### Get options of a profile
+
+You can get the options from a profile by calling:
+
+``` javascript
+// Get 'global' profile options
+notification.getProfile( 'global' );
+```
+
+#### Check if a profile exists
+
+You can check if a profile exists by calling:
+
+``` javascript
+// This returns true because the 'global' profile deos exist
+notification.checkProfile( 'global' );
+```
+
 
 <br>
 
@@ -655,7 +676,7 @@ onMouseleave: function() { ... }
 
 <br>
 
-### Default global options
+#### Default global options
 
 The following shows all the default options (in the `global` profile) for every notification.
 
@@ -715,7 +736,7 @@ The following shows all the default options (in the `global` profile) for every 
 
 Instead of defining custom callback functions in the options object you can also react to notification events globally.
 
-### Add event listener
+#### Add event listener
 
 You can add a global notification event listener by calling:
 
@@ -730,7 +751,7 @@ document.addEventListener( 'notification.open', function() { ... } );
 $('document').on( 'notification.open', function() { ... } )
 ```
 
-### Remove event listener
+#### Remove event listener
 
 You can remove a global notification event listener  by calling:
 
@@ -745,7 +766,7 @@ document.removeEventListener( 'notification.open', function );
 $('document').off( 'notification.open', function )
 ```
 
-### Event list
+#### List of all events
 
 The following list contains all available events. Next to the short event name (for the library specific methods) and
 the long event name (for the vanilla JavaScript or jQuery methods) there is also a description explaining when these
@@ -782,9 +803,7 @@ Anyone can enter issues for feature requests or bugs, and anyone can contribute 
 addition we use **[this public Trello board](https://trello.com/b/wkRHeLEF/notification-js-roadmap)** to enter, discuss and
 develop new ideas and features for this library.
 
----
-
-**Code quality**
+#### Code quality
 
 * Comment your code!
 * Use a strict 120 character per line limit
@@ -792,9 +811,7 @@ develop new ideas and features for this library.
 * CSS & HTML code follows **[this guideline](https://github.com/mdo/code-guide)**
 * Release versioning follows **[this guideline](https://github.com/mojombo/semver/blob/master/semver.md)**
 
----
-
-**Development environment**
+#### Development environment
 
 This project uses **[Grunt](http://gruntjs.com/)** to automate development tasks like formating, validating and minifiying
 different files. You can install Grunt and all used plugins by simply opening your command line tool, navigating

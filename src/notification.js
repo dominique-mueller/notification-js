@@ -57,325 +57,6 @@
 		window.CustomEvent = CustomEvent;
 	} )( window );
 
-	/* ==========  CONFIGURATION  ========== */
-
-	/**
-	 * Configuration profiles
-	 * @type  {Object}
-	 */
-	var profiles = {
-
-		/**
-		 * Global profile, contains all available options with their default (and also recommended) values
-		 * @type  {Object}
-		 */
-		global: {
-
-			notification: {
-
-				/**
-				 * Defines the position on the screen (x, y)
-				 * @type 	 {Array}
-				 * @default  [ 'left', 'bottom' ]
-				 */
-				position: [ 'left', 'bottom' ],
-
-				/**
-				 * Defines distances (x to screen in px, y to screen in px, y between in px)
-				 * @type 	 {Array}
-				 * @default  [ 20, 20, 10 ]
-				 */
-				distances: [ 20, 20, 10 ],
-
-				/**
-				 * Defines the height (in px)
-				 * @type 	 {Number}
-				 * @default  60
-				 */
-				height: 60,
-
-				/**
-				 * Defines the maximum width (in px)
-				 * @type 	 {Boolean | Number}
-				 * @default  false
-				 */
-				maxWidth: false,
-
-				/**
-				 * Defines the corner roundness (all four corners in px)
-				 * @type 	 {Boolean | Array}
-				 * @default  [ 1, 1, 1, 1 ]
-				 */
-				roundCorners: [ 1, 1, 1, 1 ],
-
-				/**
-				 * Defines the background color (in HEX / RGB / RGBA)
-				 * @type 	 {String}
-				 * @default  '#555'
-				 */
-				color: '#555'
-
-			},
-
-			symbol: {
-
-				/**
-				 * Defines the visibility (enabled / disabled)
-				 * @type 	 {Boolean}
-				 * @default  true
-				 */
-				visible: false,
-
-				/**
-				 * Defines the resource (default / url / function returning svg)
-				 * @type 	 {Boolean | String | Function}
-				 * @default  false
-				 */
-				resource: false,
-
-				/**
-				 * Defines the corner roundness (all four corners in px)
-				 * @type 	 {Boolean | Array}
-				 * @default  false
-				 */
-				roundCorners: false,
-
-				/**
-				 * Defines the highlight color (in HEX / RGB / RGBA)
-				 * @type 	 {Boolean | String}
-				 * @default  'rgba(0,0,0,.1)'
-				 */
-				color: 'rgba(0,0,0,.1)'
-
-			},
-
-			message: {
-
-				/**
-				 * Defines the visibility (enabled / disabled)
-				 * @type 	 {Boolean}
-				 * @default  true
-				 */
-				visible: true,
-
-				/**
-				 * Defines the font color (in HEX / RGB / RGBA)
-				 * @type 	 {String}
-				 * @default  '#FFF'
-				 */
-				color: '#FFF',
-
-				/**
-				 * Defines the font size (in px)
-				 * @type 	 {Number}
-				 * @default  14
-				 */
-				textSize: 14
-
-			},
-
-			dismiss: {
-
-				/**
-				 * Defines the visibility (enabled / disabled)
-				 * @type 	 {Boolean}
-				 * @default  true
-				 */
-				visible: true,
-
-				/**
-				 * Defines the font color (in HEX / RGB / RGBA)
-				 * @type 	 {String}
-				 * @default  '#FFF'
-				 */
-				color: '#FFF',
-
-				/**
-				 * Defines the dismiss text (enabled / text)
-				 * @type 	 {Boolean | String}
-				 * @default  false
-				 */
-				text: false
-
-			},
-
-			behaviour: {
-
-				/**
-				 * Defines the auto hide behaviour (disabled / duration in s)
-				 * @type 	 {Boolean | Number}
-				 * @default  5
-				 */
-				autoHide: 5,
-
-				/**
-				 * Defines the mouseover action (disabled / 'pause' / 'reset')
-				 * @type 	 {Boolean | String}
-				 * @default  'pause'
-				 */
-				onMouseover: 'pause',
-
-				/**
-				 * Defines the stacking behaviour (disabled / enabled)
-				 * @type 	 {Boolean}
-				 * @default  true
-				 */
-				stacking: true,
-
-				/**
-				 * Defines the limit of opened notifications (disabled / enabled / positiv number / negative number)
-				 * @type 	 {Boolean | Number}
-				 * @default  true
-				 */
-				limit: true,
-
-				/**
-				 * Defines the HTML mode for the message (disabled / enabled)
-				 * @type 	 {Boolean}
-				 * @default  false
-				 */
-				htmlMode: false
-
-			},
-
-			animations: {
-
-				/**
-				 * Defines the animations behaviour (disabled / enabled)
-				 * @type 	 {Boolean}
-				 * @default  true
-				 */
-				enabled: true,
-
-				/**
-				 * Defines the animation durations (animate-in in s, animate-out in s)
-				 * @type 	 {Array}
-				 * @default  [ 0.75, 0.75 ]
-				 */
-				duration: [ 0.75, 0.75 ],
-
-				/**
-				 * Defines the animation easings (animate-in, animate-out)
-				 * @type 	 {Array}
-				 * @default  [ 'ease', 'ease' ]
-				 */
-				easing: [ 'ease', 'ease' ]
-
-			},
-
-			callbacks: {
-
-				/**
-				 * Defines the callback function for the onOpen event
-				 * @type 	 {Boolean | Function}
-				 * @default  false
-				 */
-				onOpen: false,
-
-				/**
-				 * Defines the callback function for the onOpened event
-				 * @type 	 {Boolean | Function}
-				 * @default  false
-				 */
-				onOpened: false,
-
-				/**
-				 * Defines the callback function for the onClose event
-				 * @type 	 {Boolean | Function}
-				 * @default  false
-				 */
-				onClose: false,
-
-				/**
-				 * Defines the callback function for the onClosed event
-				 * @type 	 {Boolean | Function}
-				 * @default  false
-				 */
-				onClosed: false,
-
-				/**
-				 * Defines the callback function for the onDismiss event
-				 * @type 	 {Boolean | Function}
-				 * @default  false
-				 */
-				onDismiss: false,
-
-				/**
-				 * Defines the callback function for the onMouseenter event
-				 * @type 	 {Boolean | Function}
-				 * @default  false
-				 */
-				onMouseenter: false,
-
-				/**
-				 * Defines the callback function for the onMouseleave event
-				 * @type 	 {Boolean | Function}
-				 * @default  false
-				 */
-				onMouseleave: false
-
-			}
-
-		},
-
-		/**
-		 * Default profile
-		 * @type  {Object}
-		 */
-		default: {
-			notification: {
-				color: '#555'
-			}
-		},
-
-		/**
-		 * Info profile
-		 * @type  {Object}
-		 */
-		info: {
-			notification: {
-				color: '#2574A9'
-			}
-		},
-
-		/**
-		 * Success profile
-		 * @type  {Object}
-		 */
-		success: {
-			notification: {
-				color: '#239D58'
-			},
-			symbol: {
-				visible: true
-			}
-		},
-
-		/**
-		 * Error profile
-		 * @type  {Object}
-		 */
-		error: {
-			notification: {
-				color: '#B9493E'
-			},
-			symbol: {
-				visible: true
-			}
-		},
-
-		/**
-		 * Warning profile
-		 * @type  {Object}
-		 */
-		warning: {
-			notification: {
-				color: '#C7932F'
-			}
-		}
-
-	};
-
 	/* ==========  DEFAULT SYMBOLS  ========== */
 
 	/**
@@ -404,6 +85,491 @@
 
 	};
 
+	/* ==========  PROFILES  ========== */
+
+	/**
+	 * Profiles object (static)
+	 * @type  {Object}
+	 */
+	var Profiles = ( function() {
+
+		/**
+		 * List of profiles
+		 * @type  {Object}
+		 */
+		var list = {
+
+			/**
+			 * Global profile, contains all available options with their default (and also recommended) values
+			 * @type  {Object}
+			 */
+			global: {
+
+				notification: {
+
+					/**
+					 * Defines the position on the screen (x, y)
+					 * @type 	 {Array}
+					 * @default  [ 'left', 'bottom' ]
+					 */
+					position: [ 'left', 'bottom' ],
+
+					/**
+					 * Defines distances (x to screen in px, y to screen in px, y between in px)
+					 * @type 	 {Array}
+					 * @default  [ 20, 20, 10 ]
+					 */
+					distances: [ 20, 20, 10 ],
+
+					/**
+					 * Defines the height (in px)
+					 * @type 	 {Number}
+					 * @default  60
+					 */
+					height: 60,
+
+					/**
+					 * Defines the maximum width (in px)
+					 * @type 	 {Boolean | Number}
+					 * @default  false
+					 */
+					maxWidth: false,
+
+					/**
+					 * Defines the corner roundness (all four corners in px)
+					 * @type 	 {Boolean | Array}
+					 * @default  [ 1, 1, 1, 1 ]
+					 */
+					roundCorners: [ 1, 1, 1, 1 ],
+
+					/**
+					 * Defines the background color (in HEX / RGB / RGBA)
+					 * @type 	 {String}
+					 * @default  '#555'
+					 */
+					color: '#555'
+
+				},
+
+				symbol: {
+
+					/**
+					 * Defines the visibility (enabled / disabled)
+					 * @type 	 {Boolean}
+					 * @default  true
+					 */
+					visible: false,
+
+					/**
+					 * Defines the resource (default / url / function returning svg)
+					 * @type 	 {Boolean | String | Function}
+					 * @default  false
+					 */
+					resource: false,
+
+					/**
+					 * Defines the corner roundness (all four corners in px)
+					 * @type 	 {Boolean | Array}
+					 * @default  false
+					 */
+					roundCorners: false,
+
+					/**
+					 * Defines the highlight color (in HEX / RGB / RGBA)
+					 * @type 	 {Boolean | String}
+					 * @default  'rgba(0,0,0,.1)'
+					 */
+					color: 'rgba(0,0,0,.1)'
+
+				},
+
+				message: {
+
+					/**
+					 * Defines the visibility (enabled / disabled)
+					 * @type 	 {Boolean}
+					 * @default  true
+					 */
+					visible: true,
+
+					/**
+					 * Defines the font color (in HEX / RGB / RGBA)
+					 * @type 	 {String}
+					 * @default  '#FFF'
+					 */
+					color: '#FFF',
+
+					/**
+					 * Defines the font size (in px)
+					 * @type 	 {Number}
+					 * @default  14
+					 */
+					textSize: 14
+
+				},
+
+				dismiss: {
+
+					/**
+					 * Defines the visibility (enabled / disabled)
+					 * @type 	 {Boolean}
+					 * @default  true
+					 */
+					visible: true,
+
+					/**
+					 * Defines the font color (in HEX / RGB / RGBA)
+					 * @type 	 {String}
+					 * @default  '#FFF'
+					 */
+					color: '#FFF',
+
+					/**
+					 * Defines the dismiss text (enabled / text)
+					 * @type 	 {Boolean | String}
+					 * @default  false
+					 */
+					text: false
+
+				},
+
+				behaviour: {
+
+					/**
+					 * Defines the auto hide behaviour (disabled / duration in s)
+					 * @type 	 {Boolean | Number}
+					 * @default  5
+					 */
+					autoHide: 5,
+
+					/**
+					 * Defines the mouseover action (disabled / 'pause' / 'reset')
+					 * @type 	 {Boolean | String}
+					 * @default  'pause'
+					 */
+					onMouseover: 'pause',
+
+					/**
+					 * Defines the stacking behaviour (disabled / enabled)
+					 * @type 	 {Boolean}
+					 * @default  true
+					 */
+					stacking: true,
+
+					/**
+					 * Defines the limit of opened notifications (disabled / enabled / positiv number / negative number)
+					 * @type 	 {Boolean | Number}
+					 * @default  true
+					 */
+					limit: true,
+
+					/**
+					 * Defines the HTML mode for the message (disabled / enabled)
+					 * @type 	 {Boolean}
+					 * @default  false
+					 */
+					htmlMode: false
+
+				},
+
+				animations: {
+
+					/**
+					 * Defines the animations behaviour (disabled / enabled)
+					 * @type 	 {Boolean}
+					 * @default  true
+					 */
+					enabled: true,
+
+					/**
+					 * Defines the animation durations (animate-in in s, animate-out in s)
+					 * @type 	 {Array}
+					 * @default  [ 0.75, 0.75 ]
+					 */
+					duration: [ 0.75, 0.75 ],
+
+					/**
+					 * Defines the animation easings (animate-in, animate-out)
+					 * @type 	 {Array}
+					 * @default  [ 'ease', 'ease' ]
+					 */
+					easing: [ 'ease', 'ease' ]
+
+				},
+
+				callbacks: {
+
+					/**
+					 * Defines the callback function for the onOpen event
+					 * @type 	 {Boolean | Function}
+					 * @default  false
+					 */
+					onOpen: false,
+
+					/**
+					 * Defines the callback function for the onOpened event
+					 * @type 	 {Boolean | Function}
+					 * @default  false
+					 */
+					onOpened: false,
+
+					/**
+					 * Defines the callback function for the onClose event
+					 * @type 	 {Boolean | Function}
+					 * @default  false
+					 */
+					onClose: false,
+
+					/**
+					 * Defines the callback function for the onClosed event
+					 * @type 	 {Boolean | Function}
+					 * @default  false
+					 */
+					onClosed: false,
+
+					/**
+					 * Defines the callback function for the onDismiss event
+					 * @type 	 {Boolean | Function}
+					 * @default  false
+					 */
+					onDismiss: false,
+
+					/**
+					 * Defines the callback function for the onMouseenter event
+					 * @type 	 {Boolean | Function}
+					 * @default  false
+					 */
+					onMouseenter: false,
+
+					/**
+					 * Defines the callback function for the onMouseleave event
+					 * @type 	 {Boolean | Function}
+					 * @default  false
+					 */
+					onMouseleave: false
+
+				}
+
+			},
+
+			/**
+			 * Default profile
+			 * @type  {Object}
+			 */
+			default: {
+				notification: {
+					color: '#555'
+				}
+			},
+
+			/**
+			 * Info profile
+			 * @type  {Object}
+			 */
+			info: {
+				notification: {
+					color: '#2574A9'
+				}
+			},
+
+			/**
+			 * Success profile
+			 * @type  {Object}
+			 */
+			success: {
+				notification: {
+					color: '#239D58'
+				},
+				symbol: {
+					visible: true
+				}
+			},
+
+			/**
+			 * Error profile
+			 * @type  {Object}
+			 */
+			error: {
+				notification: {
+					color: '#B9493E'
+				},
+				symbol: {
+					visible: true
+				}
+			},
+
+			/**
+			 * Warning profile
+			 * @type  {Object}
+			 */
+			warning: {
+				notification: {
+					color: '#C7932F'
+				}
+			}
+
+		};
+
+		/**
+		 * Get profile options
+		 *
+		 * @param   {String}  profile  Profile name
+		 * @return  {Object}      	   Profile options
+		 */
+		var get = function get( profile ) {
+			return list[ profile ];
+		};
+
+		/**
+		 * Check if profile exists
+		 *
+		 * @param   {Stirng}   profile  Profile name
+		 * @return  {Boolean}           Result
+		 */
+		var check = function check( profile ) {
+			return list.hasOwnProperty( profile );
+		};
+
+		/**
+		 * Configure profile
+		 *
+		 * @param  {String}  profile  Profile name
+		 * @param  {Object}  options  Profile options
+		 */
+		var config = function config( profile, options ) {
+
+			for ( var optionGroup in options ) {
+
+				// Create section first (if necessary)
+				if ( !list[ profile ].hasOwnProperty( optionGroup ) ) {
+					list[ profile ][ optionGroup ] = {};
+				}
+
+				// Create or update each option within this section
+				for ( var option in options[ optionGroup ] ) {
+					list[ profile ][ optionGroup ][ option ] = options[ optionGroup ][ option ];
+				}
+
+			}
+
+		};
+
+		/**
+		 * Add new profile
+		 *
+		 * @param  {Stirng}  profile    Profile name
+		 * @param  {Object}  [options]  Profile options
+		 */
+		var add = function add( profile, options ) {
+			list[ profile ] = typeof options !== 'undefined' ? options : {};
+		};
+
+		/**
+		 * Remove profile
+		 *
+		 * @param  {String}  profile  Profile name
+		 */
+		var remove = function remove( profile ) {
+			delete list[ profile ];
+		};
+
+		/**
+		 * Reset profile
+		 *
+		 * @param  {String}  profile  Profile name
+		 */
+		var reset = function reset( profile ) {
+			list[ profile ] = {};
+		};
+
+		/**
+		 * Combine options
+		 *
+		 * Here we combine all existing options (coming from different hierarchies) into one custom options object. The
+		 * options object passed in when calling the 'notify' method is the most specific one and gets the highest
+		 * priority. After that the profile specific options and then the globally defined options are taken into
+		 * account.
+		 *
+		 * @param   {Profile}  profile  Profile name
+		 * @param   {Object}   options  Custom options object
+		 * @return  {Object}            Combined options object
+		 */
+		var combine = function combine( profile, options ) {
+
+			var combinedOptions = {};
+
+			// Merge all options
+			for ( var option in list.global ) {
+				combinedOptions[ option ] = merge(
+					list.global[ option ],
+					list[ profile ][ option ],
+					options[ option ]
+				);
+			}
+
+			return combinedOptions;
+
+		};
+
+		/**
+		 * Helper: Merge multiple objects
+		 *
+		 * The objects are merged from right to left - that means the rightmost object has the highest priority and the
+		 * lestmost object the lowest priority. The number of passed in objects is variable.
+		 *
+		 * @param   {...Object}  var_args  Multiple option objects
+		 * @return  {Object} 			   Merged result object
+		 */
+		var merge = function merge() {
+
+			var countArguments = arguments.length;
+			var result = {};
+
+			// Clean arguments from useless option objects
+			for ( var i = countArguments - 1; i > 0; i-- ) {
+				if ( typeof arguments[ i ] === 'undefined' ) {
+					delete arguments[ i ];
+				}
+			}
+
+			// Iterate through all available options (globally defined)
+			for ( var option in arguments[ 0 ] ) {
+
+				// Iterate through the complete option hierarchy
+				for ( var j = countArguments - 1; j >= 0; j-- ) {
+
+					// If the most specific option has been found, set it and continue with the next option
+					if ( typeof arguments[ j ] !== 'undefined' && arguments[ j ].hasOwnProperty( option ) ) {
+						result[ option ] = arguments[ j ][ option ];
+						break;
+					}
+
+				}
+
+			}
+
+			// Done
+			return result;
+
+		};
+
+		/**
+		 * Public API
+		 */
+		var API = {
+			get: get,
+			check: check,
+			config: config,
+			add: add,
+			remove: remove,
+			reset: reset,
+			combine: combine
+		};
+
+		return API;
+
+	} )();
+
 	/* ==========  NOTIFICATION  ========== */
 
 	/**
@@ -421,7 +587,7 @@
 		 * Notification profile name (defaults to 'default')
 		 * @type  {String}
 		 */
-		this.profile = ( typeof profiles[ profile ] !== 'undefined' ) ? profile : 'default';
+		this.profile = ( typeof Profiles.get( profile ) !== 'undefined' ) ? profile : 'default';
 
 		/**
 		 * Notification message
@@ -483,87 +649,26 @@
 
 	/**
 	 * Initialize notification
-	 *
-	 * Here we combine all existing options (coming from different hierarchies) into one custom options object that
-	 * will be only used by this notification instance. The options object passed in when calling the 'notify' method
-	 * is the most specific one and gets the highest priority. After that the profile specific options and then the
-	 * globally defined options are taken into account.
 	 */
 	Notification.prototype.initialize = function initialize() {
 
 		var _this = this;
 
 		// Combine multiple option objects into one (respecting the hierarchy)
-		var combinedOptions = {};
-		for ( var option in profiles.global ) {
-			combinedOptions[ option ] = merge(
-				profiles.global[ option ],
-				profiles[ _this.profile ][ option ],
-				_this.options[ option ]
-			);
-		}
+		_this.options = Profiles.combine( _this.profile, _this.options );
 
 		// If resource is not set, select default symbol or disable symbol visibility
-		if ( !combinedOptions.symbol.resource ) {
+		if ( !_this.options.symbol.resource ) {
 			switch ( _this.profile ) {
 				case 'success':
-					combinedOptions.symbol.resource = icons.success;
+					_this.options.symbol.resource = icons.success;
 					break;
 				case 'error':
-					combinedOptions.symbol.resource = icons.error;
+					_this.options.symbol.resource = icons.error;
 					break;
 				default:
-					combinedOptions.symbol.visible = false;
+					_this.options.symbol.visible = false;
 			}
-		}
-
-		// Set notification specific options
-		_this.options = combinedOptions;
-
-		/**
-		 * HELPER METHODS
-		 */
-
-		/**
-		 * Merge multiple objects
-		 *
-		 * The objects are merged from right to left - that means the rightmost object has the highest priority and the
-		 * lestmost object the lowest priority. The number of passed in objects is variable.
-		 *
-		 * @param   {...Object}  var_args  Multiple option objects
-		 * @return  {Object} 			   Merged result object
-		 */
-		function merge() {
-
-			var countArguments = arguments.length;
-			var result = {};
-
-			// Clean arguments from useless option objects
-			for ( var i = countArguments - 1; i > 0; i-- ) {
-				if ( typeof arguments[ i ] === 'undefined' ) {
-					delete arguments[ i ];
-				}
-			}
-
-			// Iterate through all available options (globally defined)
-			for ( var option in arguments[ 0 ] ) {
-
-				// Iterate through the complete option hierarchy
-				for ( var j = countArguments - 1; j >= 0; j-- ) {
-
-					// If the most specific option has been found, set it and continue with the next option
-					if ( typeof arguments[ j ] !== 'undefined' && arguments[ j ].hasOwnProperty( option ) ) {
-						result[ option ] = arguments[ j ][ option ];
-						break;
-					}
-
-				}
-
-			}
-
-			// Done
-			return result;
-
 		}
 
 	};
@@ -1558,12 +1663,12 @@
 		 * @param  {String}  message 	Notification message
 		 * @param  {Object}  [options]  Custom notification options
 		 */
-		notify: function( profile, message, options ) {
+		notify: function notify( profile, message, options ) {
 
 			// Create and initialize notification
 			var notification = new Notification( profile, message, options );
 
-			// Go! - start the notification life cycle
+			// Go! - Start the notification life cycle
 			notification.build( function() {
 				notification.prepare( function() {
 					notification.open( function() {
@@ -1582,8 +1687,16 @@
 		 * @param   {String}    event     Event name
 		 * @param   {Function}  callback  Callback function
 		 */
-		on: function( event, callback ) {
-			document.addEventListener( 'notification.' + event, callback );
+		on: function on( event, callback ) {
+
+			if ( typeof event === 'undefined' || typeof callback === 'undefined' ) {
+				throw new Error( 'Adding an event listener requires an event name and a callback function.' );
+			} else if ( Notification.EVENTS.indexOf( event ) === -1 ) {
+				throw new Error( 'An event with the name <' + event + '> does not exist.' );
+			} else {
+				document.addEventListener( 'notification.' + event, callback );
+			}
+
 		},
 
 		/**
@@ -1592,8 +1705,16 @@
 		 * @param   {String}    event     Event name
 		 * @param   {Function}  callback  Callback function
 		 */
-		off: function( event, callback ) {
-			document.removeEventListener( 'notification.' + event, callback );
+		off: function off( event, callback ) {
+
+			if ( typeof event === 'undefined' || typeof callback === 'undefined' ) {
+				throw new Error( 'Removing an event listener requires an event name and a callback function.' );
+			} else if ( Notification.EVENTS.indexOf( event ) === -1 ) {
+				throw new Error( 'An event with the name <' + event + '> does not exist.' );
+			} else {
+				document.removeEventListener( 'notification.' + event, callback );
+			}
+
 		},
 
 		/**
@@ -1602,52 +1723,80 @@
 		 * @param  {Boolean | Number}  [offset]    Time offset between notifications animating out (in s)
 		 * @param  {Function} 		   [callback]  Callback function
 		 */
-		clearAll: function() {
+		clearAll: function clearAll() {
 
-			// Get arguments
-			var offset;
-			var callback;
-			switch ( arguments.length ) {
-				case 0:
-					offset = 0.15;
-					callback = undefined;
-					break;
-				case 1:
-					offset = typeof arguments[ 0 ] === 'function' ? 0.15 : arguments[ 0 ];
-					callback = typeof arguments[ 0 ] === 'function' ? arguments[ 0 ] : undefined;
-					break;
-				default:
-					offset = arguments[ 0 ];
-					callback = arguments[ 1 ];
-			}
+			// Clear only when at least one notification is open
+			if ( Notification.instances.length ) {
 
-			// Close all notifications
-			var countNotifications = Notification.instances.length;
-			for ( var i = countNotifications - 1; i >= 0; i-- ) {
+				var parameters = getParameters( arguments );
 
-				// Check if animation offset is enabled
-				if ( offset ) {
-					closeNotification( i );
-				} else {
-					if ( !i && typeof callback !== 'undefined' ) {
-						Notification.instances[ i ].close( callback );
+				// Close all notifications
+				var countNotifications = Notification.instances.length;
+				for ( var i = countNotifications - 1; i >= 0; i-- ) {
+
+					// Check if animation offset is enabled
+					if ( parameters.offset ) {
+						closeNotification( i );
 					} else {
-						Notification.instances[ i ].close();
+						if ( !i && typeof parameters.callback !== 'undefined' ) {
+							Notification.instances[ i ].close( parameters.callback );
+						} else {
+							Notification.instances[ i ].close();
+						}
 					}
+
 				}
 
 			}
 
-			// Schedule notification animations
+			/**
+			 * Get values out of dynamic parameters
+			 *
+			 * @param   {Array}   input  Incoming function arguments
+			 * @return  {Object}	  	 Parameters
+			 */
+			function getParameters( input ) {
+
+				var output = {};
+
+				// Find out parameters
+				switch ( input.length ) {
+					case 0:
+						output.offset = 0.15;
+						output.callback = undefined;
+						break;
+					case 1:
+						output.offset = typeof input[ 0 ] === 'function' ? 0.15 : input[ 0 ];
+						output.callback = typeof input[ 0 ] === 'function' ? input[ 0 ] : undefined;
+						break;
+					default:
+						output.offset = input[ 0 ];
+						output.callback = input[ 1 ];
+				}
+
+				return output;
+
+			}
+
+			/**
+			 * Schedule notification animations
+			 *
+			 * @param  {Number}  instance  Number of notification instance
+			 */
 			function closeNotification( instance ) {
+
+				// Get current notification instance
 				var notification = Notification.instances[ instance ];
+
+				// Schedule animation
 				setTimeout( function() {
-					if ( instance === countNotifications - 1 && typeof callback !== 'undefined' ) {
-						notification.close( callback );
+					if ( instance === countNotifications - 1 && typeof parameters.callback !== 'undefined' ) {
+						notification.close( parameters.callback );
 					} else {
 						notification.close();
 					}
-				}, instance * offset * 1000 );
+				}, instance * parameters.offset * 1000 );
+
 			}
 
 		},
@@ -1657,56 +1806,16 @@
 		 *
 		 * @param  {Function}  [callback]  Callback
 		 */
-		clearOldest: function( callback ) {
-			var notification = Notification.instances[ 0 ];
-			if ( typeof callback !== 'undefined' ) {
-				notification.close( callback );
-			} else {
-				notification.close();
-			}
-		},
+		clearOldest: function clearOldest( callback ) {
 
-		/**
-		 * Clear newest notification
-		 *
-		 * @param  {Function}  [callback]  Callback
-		 */
-		clearNewest: function( callback ) {
-			var notification = Notification.instances[ Notification.instances.length - 1 ];
-			if ( typeof callback !== 'undefined' ) {
-				notification.close( callback );
-			} else {
-				notification.close();
-			}
-		},
+			// Clear only when at least one notification is open
+			if ( Notification.instances.length ) {
 
-		/**
-		 * Configure existing profile
-		 *
-		 * @param  {String}  profile  Profile name
-		 * @param  {Object}  options  Profile options
-		 */
-		configProfile: function( profile, options ) {
-
-			// Overwrite configuration only if the profile exists and a options object in being passed in
-			if ( !profiles.hasOwnProperty( profile ) ) {
-				throw new Error( 'A notification profile with the name <' + profile + '> does not exist.' );
-			} else if ( typeof options === 'undefined' ) {
-				throw new Error( 'Configuring a profile requires an options object.' );
-			} else {
-
-				for ( var section in options ) {
-
-					// Create section first (if necessary)
-					if ( !profiles[ profile ].hasOwnProperty( section ) ) {
-						profiles[ profile ][ section ] = {};
-					}
-
-					// Create or update each option within this section
-					for ( var option in options[ section ] ) {
-						profiles[ profile ][ section ][ option ] = options[ section ][ option ];
-					}
-
+				var notification = Notification.instances[ 0 ];
+				if ( typeof callback !== 'undefined' ) {
+					notification.close( callback );
+				} else {
+					notification.close();
 				}
 
 			}
@@ -1714,36 +1823,130 @@
 		},
 
 		/**
-		 * Add new profile
+		 * Clear newest notification
 		 *
-		 * @param  {String}  profile  	Profile name
-		 * @param  {Object}  [options]  Profile options
+		 * @param  {Function}  [callback]  Callback
 		 */
-		addProfile: function( profile, options ) {
+		clearNewest: function clearNewest( callback ) {
 
-			// Add profile only if the profile does not already exist
-			if ( !profiles.hasOwnProperty( profile ) ) {
-				profiles[ profile ] = ( typeof options !== 'undefined' ) ? options : {};
-			} else {
-				throw new Error( 'A notification profile with the name <' + profile + '> already exists.' );
+			// Clear only when at least one notification is open
+			if ( Notification.instances.length ) {
+
+				var notification = Notification.instances[ Notification.instances.length - 1 ];
+				if ( typeof callback !== 'undefined' ) {
+					notification.close( callback );
+				} else {
+					notification.close();
+				}
+
 			}
 
 		},
 
 		/**
-		 * Remove existing profile
+		 * Get profile options
+		 *
+		 * @param   {String}  profile  Profile name
+		 * @return  {Object}           Profile options
+		 */
+		getProfile: function getProfile( profile ) {
+
+			if ( typeof profile === 'undefined' ) {
+				throw new Error( 'Getting the options of a notification profile requires a profile name.' );
+			} else if ( !Profiles.check( profile ) ) {
+				throw new Error( 'A notification profile with the name <' + profile + '> does not exist.' );
+			} else {
+				return Profiles.get( profile );
+			}
+
+		},
+
+		/**
+		 * Check if profile exists
+		 *
+		 * @param   {Stirng}   profile  Profile name
+		 * @return  {Boolean} 			Result
+		 */
+		checkProfile: function checkProfile( profile ) {
+
+			if ( typeof profile === 'undefined' ) {
+				throw new Error( 'Checking if a notification profile exists required a profile name.' );
+			} else {
+				return Profiles.check( profile );
+			}
+
+		},
+
+		/**
+		 * Configure profile
+		 *
+		 * @param  {String}  profile  Profile name
+		 * @param  {Object}  options  Profile options
+		 */
+		configProfile: function configProfile( profile, options ) {
+
+			if ( typeof profile === 'undefined' || typeof options === 'undefined' ) {
+				throw new Error( 'Configuring a notification profile requires a profile name and an options object.' );
+			} else if ( !Profiles.check( profile ) ) {
+				throw new Error( 'A notification profile with the name <' + profile + '> does not exist.' );
+			} else {
+				Profiles.config( profile, options );
+			}
+
+		},
+
+		/**
+		 * Add new profile
+		 *
+		 * @param  {String}  profile    Profile name
+		 * @param  {Object}  [options]  Profile options
+		 */
+		addProfile: function addProfile( profile, options ) {
+
+			if ( typeof profile === 'undefined' ) {
+				throw new Error( 'Adding a new notification profile requires at least a profile name.' );
+			} else if ( Profiles.check( profile ) ) {
+				throw new Error( 'A notification profile with the name <' + profile + '> does not exist.' );
+			} else {
+				Profiles.add( profile, options );
+			}
+
+		},
+
+		/**
+		 * Remove profile
 		 *
 		 * @param  {String}  profile  Profile name
 		 */
-		removeProfile: function( profile ) {
+		removeProfile: function removeProfile( profile ) {
 
-			// Remove profile only if the profile exists and can be deleted (default profiles are fixed)
-			if ( !profiles.hasOwnProperty( profile ) ) {
-				throw new Error( 'A notification profile with the name <' + profile + '> does not exist.' );
+			if ( typeof profile === 'undefined' ) {
+				throw new Error( 'Removing a notification profile requires a profile name.' );
 			} else if ( [ 'global', 'default', 'info', 'success', 'error', 'warning' ].indexOf( profile ) !== -1 ) {
-				throw new Error( 'You cannot delete the <' + profile + '> profile.' );
+				throw new Error( 'The profile <' + profile + '> is locked and cannot be removed.' );
+			} else if ( !Profiles.check( profile ) ) {
+				throw new Error( 'A notification profile with the name <' + profile + '> does not exist.' );
 			} else {
-				delete profiles[ profile ];
+				Profiles.remove( profile );
+			}
+
+		},
+
+		/**
+		 * Reset profile
+		 *
+		 * @param  {Stirng}  profile  Profile name
+		 */
+		resetProfile: function resetProfile( profile ) {
+
+			if ( typeof profile === 'undefined' ) {
+				throw new Error( 'Resetting a notification profile requires a profile name.' );
+			} else if ( [ 'global', 'default', 'info', 'success', 'error', 'warning' ].indexOf( profile ) !== -1 ) {
+				throw new Error( 'The profile <' + profile + '> is locked and cannot be reset.' );
+			} else if ( !Profiles.check( profile ) ) {
+				throw new Error( 'A notification profile with the name <' + profile + '> does not exist.' );
+			} else {
+				Profiles.reset( profile );
 			}
 
 		}

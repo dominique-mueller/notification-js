@@ -40,7 +40,7 @@ bower install notification-js --save
 #### Using [npm](https://www.npmjs.com/)
 
 ```
-// Coming soon
+npm install notification-js --save
 ```
 
 #### Using [GitHub](https://github.com/)

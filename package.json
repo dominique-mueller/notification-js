@@ -40,8 +40,5 @@
 		"grunt-githooks": "0.3.x",
 		"grunt-jscs": "2.0.x",
 		"grunt-postcss": "0.5.x"
-	},
-	"scripts": {
-		"postinstall": "grunt creategithook"
 	}
 }

@@ -1,71 +1,36 @@
-# Notification.js
+<div align="center">
+
+# notification-js
 
 A dependency-free, well designed and highly customizable notification library.
 
-## Demo
+</div>
 
-Live demo with playground will be available soon **[here](http://www.dominique-mueller.de/projects/notification-js)**.
-
-The following examples have been made with the objective of demonstrating *completely differently designed*
-notifications for *all kinds of use cases*:
-
-![Design examples](http://dominique-mueller.de/projects/notification-js/images/notification_js_images.png)
----
-![Animation example](http://dominique-mueller.de/projects/notification-js/images/notification_js_animation.gif)
-
-<br>
-
-## Table of contents
-
-1. [How to install](#how-to-install)
-2. [How to use](#how-to-use)
-3. [How to configure](#how-to-configure)
-4. [All available options](#all-available-options)
-5. [Global events](#global-events)
-6. [Browser support](#browser-support)
-7. [Contributing](#contributing)
-8. [Creator](#creator)
-9. [License](#license)
-
-<br>
+<br><br>
 
 ## How to install
 
-#### Using [Bower](http://bower.io/) (recommended)
-
-```
-bower install notification-js --save
-```
-
-#### Using [npm](https://www.npmjs.com/)
-
 ```
 npm install notification-js --save
-```
-
-#### Using [GitHub](https://github.com/)
-
-```
-git clone https://github.com/dominique-mueller/notification-js.git
 ```
 
 #### Add to your document
 
 Include both the script and css files within your html document:
 
-``` html
+```html
 <!-- During development -->
 <script src="notification.js"></script>
-<link rel="stylesheet" href="notification.css">
+<link rel="stylesheet" href="notification.css" />
 
 <!-- For production -->
 <script src="notification.min.js"></script>
-<link rel="stylesheet" href="notification.min.css">
+<link rel="stylesheet" href="notification.min.css" />
 ```
 
 Furthermore this library can be used as a AMD or Node module.
 
-<br>
+<br><br>
 
 ## How to use
 
@@ -73,21 +38,21 @@ Furthermore this library can be used as a AMD or Node module.
 
 You can show a notification by calling:
 
-``` javascript
+```javascript
 // Simple way (with profile name and message)
-notification.notify( 'success', 'Settings successfully saved.' );
+notification.notify('success', 'Settings successfully saved.');
 
 // Advanced way (plus additional options)
-notification.notify( 'success', 'Settings successfully saved.', {
-	// ...
-} );
+notification.notify('success', 'Settings successfully saved.', {
+  // ...
+});
 ```
 
 #### Clear all notifications
 
 You can clear all visible notifications by calling:
 
-``` javascript
+```javascript
 // Simple way
 notification.clearAll();
 
@@ -109,7 +74,7 @@ notification.clearAll( 0.3, function() { ... } );
 
 You can clear just the newst notification by calling:
 
-``` javascript
+```javascript
 // Simple way
 notification.clearNewest();
 
@@ -122,7 +87,7 @@ notification.clearNewest( function() { ... } );
 
 You can clear just the oldest notification by calling:
 
-``` javascript
+```javascript
 // Simple way
 notification.clearOldest();
 
@@ -131,7 +96,7 @@ notification.clearOldest( function() { ... } );
 
 ```
 
-<br>
+<br><br>
 
 ## How to configure
 
@@ -141,85 +106,84 @@ You may run into the situation that you fire multiple notifications and some of 
 and functionality. But you don't want to repeat yourself by passing in an options object again and again. There has
 to be a better way.
 
-*And there is!* You have the ability to group similar notifications together by using the concept of profiles.
+_And there is!_ You have the ability to group similar notifications together by using the concept of profiles.
 
 **There are three different types of profiles:**
 
-* The `global` profile which contains all possible options with their default values, and therefore serves as the
-base configuration
-* Predefined profiles like `success`, `warning`, `error`, `default` and `info` which contain some basic options (mostly colors) for their
-use cases
-* And yes, your own profiles, for example `message`, `confirmation` or `social`
+- The `global` profile which contains all possible options with their default values, and therefore serves as the
+  base configuration
+- Predefined profiles like `success`, `warning`, `error`, `default` and `info` which contain some basic options (mostly colors) for their
+  use cases
+- And yes, your own profiles, for example `message`, `confirmation` or `social`
 
 **Options are combined / prioritized by the following hierarchy:**
 
-* Most important (and specific) are the options you pass in within the `notify` method
-* Then all predefined profiles (e.g. `success`) or your own profiles are taken into account
-* Lastly the `global` profile provides the values that are yet not set
+- Most important (and specific) are the options you pass in within the `notify` method
+- Then all predefined profiles (e.g. `success`) or your own profiles are taken into account
+- Lastly the `global` profile provides the values that are yet not set
 
 #### Add a profile
 
 You can add a brand new profile by calling:
 
-``` javascript
+```javascript
 // Create a new profile named 'social' without options
-notification.addProfile( 'social' );
+notification.addProfile('social');
 
 // Create a new profile named 'social' with options
-notification.addProfile( 'social', {
-	// ...
-} );
+notification.addProfile('social', {
+  // ...
+});
 ```
 
 #### Configure a profile
 
 You can overwrite profile options with your own options object by calling:
 
-``` javascript
+```javascript
 // Configure the 'social' profile
-notification.configProfile( 'social', {
-	// ...
-} );
+notification.configProfile('social', {
+  // ...
+});
 ```
 
 #### Remove a profile
 
 You can remove any profile which is not predefined (e.g. `global` or `success`) by calling:
 
-``` javascript
+```javascript
 // Remove the 'social' profile
-notification.removeProfile( 'social' );
+notification.removeProfile('social');
 ```
 
 #### Reset a profile
 
 You can reset any profile which is not predefined (e.g. `global` or `success`) by calling:
 
-``` javascript
+```javascript
 // Reset the 'social' profile to global default options
-notification.resetProfile( 'social' );
+notification.resetProfile('social');
 ```
 
 #### Get options of a profile
 
 You can get the options from a profile by calling:
 
-``` javascript
+```javascript
 // Get 'global' profile options
-notification.getProfile( 'global' );
+notification.getProfile('global');
 ```
 
 #### Check if a profile exists
 
 You can check if a profile exists by calling:
 
-``` javascript
+```javascript
 // This returns true because the 'global' profile deos exist
-notification.checkProfile( 'global' );
+notification.checkProfile('global');
 ```
 
-
-<br>
+<br><br>
 
 ## All available options
 
@@ -244,9 +208,9 @@ The following presents an overview over all available options including detailed
 This option defines the position on the screen in which notifications will appear. The first value is responsible for
 the x-axis (`left | middle | right`), the second value for the y-axis (`bottom | top`).
 
-``` javascript
+```javascript
 // Notifications will appear on the left bottom of the screen
-position: [ 'left', 'bottom' ]
+position: ['left', 'bottom'];
 ```
 
 ---
@@ -257,10 +221,10 @@ This option defines distances: The first two values are responsible for the dist
 screen edge (x-axis, y-axis), the third value sets the vertical gap between multiple
 notifications.
 
-``` javascript
+```javascript
 // 20px distance to each screen edge (horizontal and vertical)
 // 10px gap between notifications
-distances: [ 20, 20, 10 ]
+distances: [20, 20, 10];
 ```
 
 ---
@@ -271,9 +235,9 @@ This option defines the notification height.
 
 > Note: Make sure to change this value carefully in order to prevent design issues.
 
-``` javascript
+```javascript
 // The notification has a height of 60px
-height: 60
+height: 60;
 ```
 
 ---
@@ -284,12 +248,12 @@ This option defines the maximum notification width.
 
 > Note: The notification will not be wider than the screen size allows.
 
-``` javascript
+```javascript
 // The notification cannot be wider than the screen width
-maxWidth: false
+maxWidth: false;
 
 // The notification cannot be wider that 500px
-maxWidth: 500
+maxWidth: 500;
 ```
 
 ---
@@ -301,12 +265,12 @@ one and continuing clockwise.
 
 > Tip: Set all values half the notification height in order to make the notification round.
 
-``` javascript
+```javascript
 // No round corners
-roundCorners: false
+roundCorners: false;
 
 // Each notification corner is 1px round
-roundCorners: [ 1, 1, 1, 1 ]
+roundCorners: [1, 1, 1, 1];
 ```
 
 ---
@@ -318,9 +282,9 @@ order to maintain good readability (by preserving enough contrast).
 
 > Tip: HEX and RGB color values are recommended.
 
-``` javascript
+```javascript
 // Dark grey as the notification background color
-color: '#666'
+color: '#666';
 ```
 
 <br>
@@ -333,12 +297,12 @@ color: '#666'
 
 With this option you can enable or disable the notification symbol.
 
-``` javascript
+```javascript
 // Notification with a symbol
-visibility: true
+visibility: true;
 
 // Notification without a symbol
-visibility: false
+visibility: false;
 ```
 
 ---
@@ -348,14 +312,14 @@ visibility: false
 This option defines what the symbol should look like. Here you can either set an icon (e.g. checkmark for success
 feedback) or an image (e.g. user image for social use cases).
 
-* When set to `false` the default symbol is being used (only for `success`, `error` profiles)
-* You can set a string containing any valid svg code (to use inline svg)
-* You can set a relative / absolute path pointing to an image of any format (e.g. jpg, png)
-* You can set a function which returns a valid svg DOM element (to use inline svg)
+- When set to `false` the default symbol is being used (only for `success`, `error` profiles)
+- You can set a string containing any valid svg code (to use inline svg)
+- You can set a relative / absolute path pointing to an image of any format (e.g. jpg, png)
+- You can set a function which returns a valid svg DOM element (to use inline svg)
 
 > Note: For quality and perf reasons the resource should be quadratic and optimally sized.
 
-``` javascript
+```javascript
 // Using the default symbol
 resource: false
 
@@ -382,12 +346,12 @@ top left one and continuing clockwise.
 
 > Tip: Set all values half the notification height in order to make the symbol round.
 
-``` javascript
+```javascript
 // No round corners
-roundCorners: false
+roundCorners: false;
 
 // Each symbol corner is 1px round
-roundCorners: [ 1, 1, 1, 1 ]
+roundCorners: [1, 1, 1, 1];
 ```
 
 ---
@@ -399,15 +363,15 @@ image with no transparency.
 
 > Tip: HEX, RGB or RGBA color values are recommended.
 
-``` javascript
+```javascript
 // No highlight color
-color: false
+color: false;
 
 // Darker background highlight
-color: 'rgba(0,0,0,.1)'
+color: 'rgba(0,0,0,.1)';
 
 // Brighter background highlight
-color: 'rgba(255,255,255,.15)'
+color: 'rgba(255,255,255,.15)';
 ```
 
 <br>
@@ -422,12 +386,12 @@ With this option you can enable or disable the notification message.
 
 > Note: Hiding the notification message is not recommended.
 
-``` javascript
+```javascript
 // Notification with a message
-visibility: true
+visibility: true;
 
 // Notification without a message
-visibility: false
+visibility: false;
 ```
 
 ---
@@ -438,9 +402,9 @@ This option defines the text color of the message.
 
 > Tip: HEX or RGB color values are recommended.
 
-``` javascript
+```javascript
 // White text color
-color: '#FFF'
+color: '#FFF';
 ```
 
 ---
@@ -451,9 +415,9 @@ This option defines the text size of the message.
 
 > Tip: Make sure to change this value onyl slightly to prevent design issues.
 
-``` javascript
+```javascript
 // Font size of 14px
-textSize: 14
+textSize: 14;
 ```
 
 <br>
@@ -468,12 +432,12 @@ With this option you can enable or disable the notification dismiss button.
 
 > Tip: When disabling the dismiss button, make sure to at least enable auto hide.
 
-``` javascript
+```javascript
 // Notification with a dismiss button
-visibility: true
+visibility: true;
 
 // Notification without a dismiss button
-visibility: false
+visibility: false;
 ```
 
 ---
@@ -484,9 +448,9 @@ This option defines the dismiss text color.
 
 > Tip: HEX or RGB color values are recommended.
 
-``` javascript
+```javascript
 // White text color
-color: '#FFF'
+color: '#FFF';
 ```
 
 ---
@@ -495,15 +459,15 @@ color: '#FFF'
 
 This option defines whether a close icon or some custom text is being displayed within the dismiss button.
 
-``` javascript
+```javascript
 // Dismiss button with a close icon
-text: false
+text: false;
 
 // Dismiss button named 'dismiss'
-text: 'dismiss'
+text: 'dismiss';
 
 // Dismiss button named 'close'
-text: 'close'
+text: 'close';
 ```
 
 <br>
@@ -518,12 +482,12 @@ With this option you can define a time duration after which the notification wil
 
 > Tip: When disabling auto hide, make sure to at least provide a dismiss button.
 
-``` javascript
+```javascript
 // Notification stays open (like forever ...)
-autoHide: false
+autoHide: false;
 
 // Notification will close itself after 5 seconds
-autoHide: 5
+autoHide: 5;
 ```
 
 ---
@@ -534,15 +498,15 @@ This option defines what will happen when the user hovers over the notification 
 
 > Note: This option only works if auto hide is enabled.
 
-``` javascript
+```javascript
 // Nothing will happen
-onMouseover: false
+onMouseover: false;
 
 // The auto hide countdown will be paused
-onMouseover: 'pause'
+onMouseover: 'pause';
 
 // The auto hide countdown will be reset (to its start value)
-onMouseover: 'reset'
+onMouseover: 'reset';
 ```
 
 ---
@@ -551,12 +515,12 @@ onMouseover: 'reset'
 
 This option defines what will happen when more than one notification appear at the same time.
 
-``` javascript
+```javascript
 // Multiple notifications will be stacked up
-stacking: true
+stacking: true;
 
 // Only one notification can exist at a time
-stacking: false
+stacking: false;
 ```
 
 ---
@@ -567,19 +531,19 @@ This option defines the maximum number (the limit) of notifications that can be 
 
 > Note: This option only works if stacking is enabled.
 
-``` javascript
+```javascript
 // Show as many notifications as there is room for on the screen
-limit: true
+limit: true;
 
 // There must not be more that 4 notifications at a time
-limit: 4
+limit: 4;
 
 // Show as many notifications as there is room for on the screen,
 // but leave (unused) room for 2 more notifications
-limit: -2
+limit: -2;
 
 // No limit of notifications
-limit: false
+limit: false;
 ```
 
 ---
@@ -591,12 +555,12 @@ a higher performance as well as better security (e.g. against XSS).
 
 > Tip: When enabled you can use html markup like links (`<a>`) or text styling (`<strong>`).
 
-``` javascript
+```javascript
 // Plain text message
-htmlMode: false
+htmlMode: false;
 
 // Message with html markup taken into account
-htmlMode: true
+htmlMode: true;
 ```
 
 <br>
@@ -612,12 +576,12 @@ components.
 
 > Tip: You may temporarily turn off animations during development to speed up workflow.
 
-``` javascript
+```javascript
 // All animations are enabled
-enabled: true
+enabled: true;
 
 // All animations are disabled
-enabled: false
+enabled: false;
 ```
 
 ---
@@ -627,9 +591,9 @@ enabled: false
 This option defines how long animations are going to take from start to end. The first value represents the duration of
 things animating in, the second one of things animating out.
 
-``` javascript
+```javascript
 // 0.75s duration to both animate in and out
-duration: [ 0.75, 0.75 ]
+duration: [0.75, 0.75];
 ```
 
 ---
@@ -639,9 +603,9 @@ duration: [ 0.75, 0.75 ]
 This option defines what animation easing function is being used; again the first value for things animating in, the
 second one for things animating out.
 
-``` javascript
+```javascript
 // Both animations (in and out) use the 'ease' function
-easing: [ 'ease', 'ease']
+easing: ['ease', 'ease'];
 ```
 
 <br>
@@ -651,7 +615,7 @@ easing: [ 'ease', 'ease']
 Here you can define functions that are being invoked when certain events occure. When set to `false` nothing will
 happen.
 
-``` javascript
+```javascript
 // Triggers when notification starts animating in
 onOpen: function() { ... }
 
@@ -680,7 +644,7 @@ onMouseleave: function() { ... }
 
 The following shows all the default options (in the `global` profile) for every notification.
 
-``` javascript
+```javascript
 {
 	notification: {
 		position: [ 'left', 'bottom' ],
@@ -740,7 +704,7 @@ Instead of defining custom callback functions in the options object you can also
 
 You can add a global notification event listener by calling:
 
-``` javascript
+```javascript
 // Short version
 notification.on( 'open', function() { ... } );
 
@@ -753,9 +717,9 @@ $('document').on( 'notification.open', function() { ... } )
 
 #### Remove event listener
 
-You can remove a global notification event listener  by calling:
+You can remove a global notification event listener by calling:
 
-``` javascript
+```javascript
 // Short version
 notification.off( 'open', function );
 
@@ -782,81 +746,15 @@ events will be triggered.
 | mouseenter | notification.mouseenter | Mouse enters the notification area       |
 | mouseleave | notification.mouseleave | Mouse leaves the notification area       |
 
-<br>
+<br><br>
 
 ## Browser support
 
 This library should completely work with the following browser:
 
-* Internet Explorer 10+
-* Microsoft Edge
-* Mozilla Firefox 23+
-* Google Chrome 30+
-* Opera 17+
-* Safari 7.1+
-
-<br>
-
-## Contributing
-
-Anyone can enter issues for feature requests or bugs, and anyone can contribute to this project here on Github. In
-addition we use **[this public Trello board](https://trello.com/b/wkRHeLEF/notification-js-roadmap)** to enter, discuss and
-develop new ideas and features for this library.
-
-#### Code quality
-
-* Comment your code!
-* Use a strict 120 character per line limit
-* JavaScript code follows **[this guideline](https://github.com/estelle/javascript)**
-* CSS & HTML code follows **[this guideline](https://github.com/mdo/code-guide)**
-* Release versioning follows **[this guideline](https://github.com/mojombo/semver/blob/master/semver.md)**
-
-#### Development environment
-
-This project uses **[Grunt](http://gruntjs.com/)** to automate development tasks like formating, validating and minifiying
-different files. You can install Grunt and all used plugins by simply opening your command line tool, navigating
-to the main project folder and calling `npm install` (**[NodeJS](https://nodejs.org/)** required).
-
-This process also automatically creates and installs a (project specific) git hook for you which ensures that the main
-Grunt task is being executed before any commit. This way the optimized library files (in the `build` folder) are always
-syntactically correct and up to date.
-
-> All git actions has to be executed within command line to make the git hook work properly !
-
-<br>
-
-## Creator
-
-**Dominique Müller**
-
-* E-Mail: [dominique.m.mueller@gmail.com](mailto:dominique.m.mueller@gmail.com)
-* Website: [dominique-mueller.de](http://www.dominique-mueller.de/)
-* Twitter: [@theDomiMueller](https:/twitter.com/theDomiMueller)
-
-Please feel free to contact me at any time !
-
-<br>
-
-## License
-
-The MIT License (MIT)
-
-Copyright (c) 2015 Dominique Müller <[dominique.m.mueller@gmail.com](mailto:dominique.m.mueller@gmail.com)>
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+- Internet Explorer 10+
+- Microsoft Edge
+- Mozilla Firefox 23+
+- Google Chrome 30+
+- Opera 17+
+- Safari 7.1+

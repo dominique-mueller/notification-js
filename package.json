@@ -22,7 +22,7 @@
   ],
   "devDependencies": {
     "autoprefixer-core": "5.2.x",
-    "grunt": "0.4.x",
+    "grunt": "1.3.x",
     "grunt-contrib-csslint": "0.5.x",
     "grunt-contrib-cssmin": "0.13.x",
     "grunt-contrib-jshint": "0.11.x",
